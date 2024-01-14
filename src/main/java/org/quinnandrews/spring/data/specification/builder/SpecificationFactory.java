@@ -1,7 +1,7 @@
 package org.quinnandrews.spring.data.specification.builder;
 
 import jakarta.persistence.criteria.JoinType;
-import jakarta.persistence.metamodel.ListAttribute;
+import jakarta.persistence.metamodel.PluralAttribute;
 import jakarta.persistence.metamodel.SingularAttribute;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -169,7 +169,7 @@ public class SpecificationFactory {
         return ghost();
     }
 
-    public <T> Specification<T> fetch(final ListAttribute<T, ?> attribute) {
+    public <T> Specification<T> fetch(final PluralAttribute<T, ?, ?> attribute) {
         Objects.requireNonNull(attribute, ATTRIBUTE_CANNOT_BE_NULL);
         if (noneAreNull(attribute)) {
             return (root, query, builder) -> {

@@ -1,6 +1,6 @@
 package org.quinnandrews.spring.data.specification.builder;
 
-import jakarta.persistence.metamodel.ListAttribute;
+import jakarta.persistence.metamodel.PluralAttribute;
 import jakarta.persistence.metamodel.SingularAttribute;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -10,7 +10,7 @@ import java.util.Objects;
 /**
  * Generates and composes Specifications with a fluent-API that is easy to read.
  *
- * @param <T> The Entity Type to query on
+ * @param <T> The Entity Type to query on as an Aggregate Root.
  *
  * @author Quinn Andrews
  */
@@ -24,8 +24,8 @@ public class SpecificationBuilder<T> {
         // no-op
     }
 
-    public static <T> SpecificationBuilder<T> withRoot(final Class<T> rootType) {
-        Objects.requireNonNull(rootType, "Argument 'rootType' cannot be null.");
+    public static <T> SpecificationBuilder<T> withRoot(final Class<T> root) {
+        Objects.requireNonNull(root, "Argument 'root' cannot be null.");
         return new SpecificationBuilder<>();
     }
 
@@ -128,7 +128,7 @@ public class SpecificationBuilder<T> {
         return andWhere(specificationFactory.fetch(attribute));
     }
 
-    public SpecificationBuilder<T> withFetch(final ListAttribute<T, ?> attribute) {
+    public SpecificationBuilder<T> withFetch(final PluralAttribute<T, ?, ?> attribute) {
         return andWhere(specificationFactory.fetch(attribute));
     }
 }

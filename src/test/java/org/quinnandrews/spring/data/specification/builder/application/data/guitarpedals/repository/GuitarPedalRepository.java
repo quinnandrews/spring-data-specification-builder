@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface GuitarPedalRepository extends JpaRepository<GuitarPedal, Long>,
-        JpaSpecificationExecutor<GuitarPedal> {
+                                               JpaSpecificationExecutor<GuitarPedal> {
 }

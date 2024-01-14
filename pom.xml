@@ -10,8 +10,10 @@
 
     <name>Specification Builder</name>
     <description>
-        Provides convenient ways to generate and chain Specifications for common
-        cases with null-safe handling and a fluent API.
+        Provides a variety of components that reduce the overhead of composing and
+        maintaining Specifications. Enhances code legibility with a fluent API, makes
+        conditional query building easy, and supports query optimization for fetching
+        associated Entities eagerly.
     </description>
 
     <properties>
@@ -38,9 +40,14 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-jpamodelgen</artifactId>
+            <version>6.3.1.Final</version>
+        </dependency>
+        <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.12.0</version>
+            <version>3.13.0</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -50,12 +57,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate.orm</groupId>
-            <artifactId>hibernate-jpamodelgen</artifactId>
-            <version>6.3.1.Final</version>
             <scope>test</scope>
         </dependency>
         <dependency>
