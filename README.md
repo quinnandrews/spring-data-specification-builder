@@ -24,9 +24,18 @@ SpecificationFactory and SpecificationUtil may be used independently, if desired
 ### Java 17
 https://adoptium.net/temurin/releases/?version=17
 
+### Hibernate JPA Metamodel Generator (or equivalent)
+https://hibernate.org/orm/tooling/
+```xml
+<dependency>
+    <groupId>org.hibernate.orm</groupId>
+    <artifactId>hibernate-jpamodelgen</artifactId>
+    <version>6.3.1.Final</version>
+</dependency>
+```
+
 ## Dependencies
 - Spring Boot Starter Data JPA 3.1.4
-- Hibernate JPA Metamodel Generator 6.3.1.Final
 - Apache Commons Lang 3.13.0
 
 ## Usage
