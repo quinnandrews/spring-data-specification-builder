@@ -51,7 +51,7 @@ Add this project's artifact to your project as a dependency:
 
 Then extend your Repository Interfaces with JPASpecificationExecutor:
 ```java
-import org.quinnandrews.spring.data.specification.builder.application.data.guitarpedals.GuitarPedal;
+import io.github.quinnandrews.spring.data.specification.builder.application.data.guitarpedals.GuitarPedal;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
@@ -64,10 +64,10 @@ public interface GuitarPedalRepository extends JpaRepository<GuitarPedal, Long>,
 Next, define your Specifications:
 
 ```java
-import org.quinnandrews.spring.data.specification.annotations.Specifications;
-import org.quinnandrews.spring.data.specification.builder.SpecificationBuilder;
-import org.quinnandrews.spring.data.specification.builder.application.data.guitarpedals.GuitarPedal;
-import org.quinnandrews.spring.data.specification.builder.application.data.guitarpedals.GuitarPedal_;
+import io.github.quinnandrews.spring.data.specification.annotations.Specifications;
+import io.github.quinnandrews.spring.data.specification.builder.SpecificationBuilder;
+import io.github.quinnandrews.spring.data.specification.builder.application.data.guitarpedals.GuitarPedal;
+import io.github.quinnandrews.spring.data.specification.builder.application.data.guitarpedals.GuitarPedal_;
 import org.springframework.data.jpa.domain.Specification;
 
 @Specifications
@@ -83,9 +83,9 @@ public class GuitarPedalSpecifications {
 ```
 Finally, use your Specifications to execute queries:
 ```java
-import org.quinnandrews.spring.data.specification.builder.application.data.guitarpedals.GuitarPedal;
-import org.quinnandrews.spring.data.specification.builder.application.data.guitarpedals.repository.GuitarPedalRepository;
-import org.quinnandrews.spring.data.specification.builder.application.data.guitarpedals.specifications.GuitarPedalSpecifications;
+import io.github.quinnandrews.spring.data.specification.builder.application.data.guitarpedals.GuitarPedal;
+import io.github.quinnandrews.spring.data.specification.builder.application.data.guitarpedals.repository.GuitarPedalRepository;
+import io.github.quinnandrews.spring.data.specification.builder.application.data.guitarpedals.specifications.GuitarPedalSpecifications;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
