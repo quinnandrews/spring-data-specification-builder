@@ -44,10 +44,10 @@ Add this project's artifact to your project as a dependency:
 <dependency>
     <groupId>io.github.quinnandrews</groupId>
     <artifactId>spring-data-specification-builder</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
 </dependency>
 ```
-(NOTE: This project's artifact is NOT yet available in Maven Central)
+(NOTE: This project's artifact is NOT yet available in Maven Central, but is available as a GitHub package.)
 
 Then extend your Repository Interfaces with JPASpecificationExecutor:
 ```java
