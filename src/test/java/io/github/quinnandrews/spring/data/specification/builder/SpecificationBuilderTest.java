@@ -46,6 +46,30 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    void and_returnsBuilder() {
+        var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
+                .and();
+        assertNotNull(builder);
+    }
+
+    @Test
+    void and_returnsBuilderWithSpecification() {
+        var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
+                .and(new SpecificationFactory().ghost());
+        assertNotNull(builder);
+        assertNotNull(builder.toSpecification());
+    }
+
+    @Test
+    void and_throwsException_whenArgumentIsNull() {
+        assertThrows(
+                NullPointerException.class,
+                () -> SpecificationBuilder.withRoot(GuitarPedal.class)
+                        .and(null)
+        );
+    }
+
+    @Test
     void andWhere_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
                 .andWhere(new SpecificationFactory().ghost());

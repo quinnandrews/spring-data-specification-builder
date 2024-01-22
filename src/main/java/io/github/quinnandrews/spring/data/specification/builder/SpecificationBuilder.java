@@ -33,6 +33,14 @@ public class SpecificationBuilder<T> {
         return specification;
     }
 
+    public SpecificationBuilder<T> and() {
+        return this;
+    }
+
+    public SpecificationBuilder<T> and(final Specification<T> specification) {
+        return andWhere(specification);
+    }
+
     public SpecificationBuilder<T> andWhere(final Specification<T> specification) {
         Objects.requireNonNull(specification, "Argument 'specification' cannot be null.");
         this.specification = this.specification == null ?
