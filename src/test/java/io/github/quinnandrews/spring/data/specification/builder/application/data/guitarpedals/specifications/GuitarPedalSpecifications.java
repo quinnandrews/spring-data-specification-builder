@@ -265,7 +265,7 @@ public class GuitarPedalSpecifications {
     public Specification<GuitarPedal> search_example_07(final Integer usedValueGreaterThan) {
         return SpecificationBuilder.withRoot(GuitarPedal.class)
                 .whereIsNull(GuitarPedal_.dateSold)
-                .whereGreaterThan(GuitarPedal_.usedValue, usedValueGreaterThan)
+                .and().whereGreaterThan(GuitarPedal_.usedValue, usedValueGreaterThan)
                 .toSpecification();
     }
 

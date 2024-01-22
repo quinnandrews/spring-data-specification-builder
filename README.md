@@ -76,7 +76,7 @@ public class GuitarPedalSpecifications {
     public Specification<GuitarPedal> pedalsNotSoldWithValueGreaterThan(final Integer usedValue) {
         return SpecificationBuilder.withRoot(GuitarPedal.class)
                 .whereIsNull(GuitarPedal_.dateSold)
-                .whereGreaterThan(GuitarPedal_.usedValue, usedValue)
+                .and().whereGreaterThan(GuitarPedal_.usedValue, usedValue)
                 .toSpecification();
     }
 }
@@ -126,9 +126,11 @@ SpecificationBuilderIntegrationTest contains Integration Tests for the methods i
 SpecificationBuilderTest, SpecificationFactoryTest and SpecificationUtilTest contain Unit Tests for the methods in their corresponding Classes. These may useful to look at as well, in order to understand more about how things work under the hood, but it is not necessary. 
 
 ## Roadmap
-1) **Build Specifications on Associations**<br>
+1) ~~**Add `and()` Methods in the Builder**<br>
+Add `and()` Methods to make the fluent-API more fluent & legible, and to better resemble the Specification Interface.~~
+2) **Build Specifications on Associations**<br>
 Add versions of `where` methods that operate on Associations. It is expected the builder will need to maintain an instance variable containing Joins already created, so that they can be re-used during the build process if there is more than one Specification to apply to an Association.
-2) **Define JoinType of Associations**<br>
+3) **Define JoinType of Associations**<br>
 Add versions of `withFetch()` that allow definition of JoinType. Should it be applied to `where` methods on Associations as well?
-3) **Consider Adding a `not()` Method in the Builder**
-4) **Consider Adding a `clear()` Method in the Builder**
+4) **Consider Adding a `not()` Method in the Builder**
+5) **Consider Adding a `clear()` Method in the Builder**
