@@ -354,11 +354,11 @@ public class GuitarPedalSpecifications {
     /*
     This example, Fetch Example #2, uses the withFetch() method provided by the
     SpecificationBuilder to eagerly fetch an associated Entity, but it also uses
-    the andWhere() method to filter by one of the associated Entity's properties.
+    the where() method to filter by one of the associated Entity's properties.
 
     At this time, this project does not provide any builder or factory methods
     to filter by properties belonging to an associated Entity, but it is on the
-    roadmap. In the meantime, one can use the andWhere() to pass in a an anonymous
+    roadmap. In the meantime, one can use the where() to pass in a an anonymous
     subclass of Specification that defines the filtering.
 
     Here we use a method from the SpecificationUtil Class (which is used by many
@@ -409,7 +409,7 @@ public class GuitarPedalSpecifications {
     public Specification<GuitarPedal> fetch_example_02(final String name) {
         return SpecificationBuilder.withRoot(GuitarPedal.class)
                 .withFetch(GuitarPedal_.manufacturer)
-                .andWhere(
+                .where(
                         (root, query, builder) -> {
                             if (SpecificationUtil.noneAreNull(name)) {
                                 final var join = root.join(GuitarPedal_.manufacturer);
@@ -425,7 +425,7 @@ public class GuitarPedalSpecifications {
     This example, Fetch Example #3, uses the withFetch() method provided by the
     SpecificationBuilder twice, one to eagerly fetch an associated Entity and
     another to eagerly fetch an associated Collection of Entities. It also uses
-    the andWhere() method to filter by a property belonging to Entity of the
+    the where() method to filter by a property belonging to Entity of the
     associated Collection.
 
     Filtering by a property of an Entity in a Collection is not much different
@@ -445,7 +445,7 @@ public class GuitarPedalSpecifications {
         return SpecificationBuilder.withRoot(GuitarPedal.class)
                 .withFetch(GuitarPedal_.manufacturer)
                 .withFetch(GuitarPedal_.tags)
-                .andWhere(
+                .where(
                         (root, query, builder) -> {
                             if (SpecificationUtil.noneAreNull(tags)) {
                                 final var join = root.join(GuitarPedal_.tags);
@@ -477,7 +477,7 @@ public class GuitarPedalSpecifications {
         return SpecificationBuilder.withRoot(GuitarPedal.class)
                 .withFetch(GuitarPedal_.manufacturer)
                 .withFetch(GuitarPedal_.tags)
-                .andWhere(tagsContain(tags))
+                .where(tagsContain(tags))
                 .toSpecification();
     }
 
@@ -517,7 +517,7 @@ public class GuitarPedalSpecifications {
         return SpecificationBuilder.withRoot(GuitarPedal.class)
                 .withFetch(GuitarPedal_.manufacturer)
                 .withFetch(GuitarPedal_.tags)
-                .andWhere(
+                .where(
                         (root, query, builder) -> {
                             if (SpecificationUtil.noneAreNull(id)) {
                                 final var join = root.join(GuitarPedal_.tags);
@@ -526,7 +526,7 @@ public class GuitarPedalSpecifications {
                             return null;
                         }
                 )
-                .andWhere(
+                .and(
                         (root, query, builder) -> {
                             if (SpecificationUtil.noneAreNull(tags)) {
                                 final var join = root.join(GuitarPedal_.tags);
@@ -564,7 +564,7 @@ public class GuitarPedalSpecifications {
         return SpecificationBuilder.withRoot(GuitarPedal.class)
                 .withFetch(GuitarPedal_.manufacturer)
                 .withFetch(GuitarPedal_.tags)
-                .andWhere(
+                .where(
                         (root, query, builder) -> {
                             if (SpecificationUtil.noneAreNull(id)
                                     || SpecificationUtil.noneAreNull(tags)) {
@@ -656,7 +656,7 @@ public class GuitarPedalSpecifications {
                                                        final Collection<String> tags) {
         return SpecificationBuilder.withRoot(GuitarPedal.class)
                 .withFetch(GuitarPedal_.manufacturer)
-                .andWhere(
+                .where(
                         (root, query, builder) -> {
                             final var join = (Join<GuitarPedal, GuitarPedalTag>) root.fetch(GuitarPedal_.tags);
                             final Specification<GuitarPedal> idGreaterThan = (r1, q1, b1) -> {

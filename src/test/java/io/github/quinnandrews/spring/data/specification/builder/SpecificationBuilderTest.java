@@ -46,6 +46,30 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    void where_returnsBuilder() {
+        var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
+                .where();
+        assertNotNull(builder);
+    }
+
+    @Test
+    void where_returnsBuilderWithSpecification() {
+        var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
+                .where(new SpecificationFactory().ghost());
+        assertNotNull(builder);
+        assertNotNull(builder.toSpecification());
+    }
+
+    @Test
+    void where_throwsException_whenArgumentIsNull() {
+        assertThrows(
+                NullPointerException.class,
+                () -> SpecificationBuilder.withRoot(GuitarPedal.class)
+                        .where(null)
+        );
+    }
+
+    @Test
     void and_returnsBuilder() {
         var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
                 .and();
@@ -70,6 +94,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void andWhere_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
                 .andWhere(new SpecificationFactory().ghost());
@@ -78,6 +103,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void andWhere_throwsException_whenArgumentIsNull() {
         assertThrows(
                 NullPointerException.class,

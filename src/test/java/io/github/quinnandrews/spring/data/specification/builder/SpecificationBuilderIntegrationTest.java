@@ -235,11 +235,42 @@ public class SpecificationBuilderIntegrationTest {
     }
 
     @Test
+    @Deprecated
     void andWhere() {
         var pedals = guitarPedalRepository.findAll(
                 SpecificationBuilder.withRoot(GuitarPedal.class)
                         .whereLike(GuitarPedal_.name, "%and%")
                         .andWhere(SpecificationBuilder.withRoot(GuitarPedal.class)
+                                .whereIsNull(GuitarPedal_.dateSold)
+                                .toSpecification())
+                        .toSpecification(), Sort.by("name"));
+        assertEquals(1, pedals.size());
+        assertEquals(2L, pedals.get(0).getId());
+        assertEquals("Deco: Tape Saturation and Double Tracker", pedals.get(0).getName());
+        assertNull(pedals.get(0).getDateSold());
+    }
+
+    @Test
+    void where_withSpecification() {
+        var pedals = guitarPedalRepository.findAll(
+                SpecificationBuilder.withRoot(GuitarPedal.class)
+                        .where(SpecificationBuilder.withRoot(GuitarPedal.class)
+                                .whereIsNull(GuitarPedal_.dateSold)
+                                .toSpecification())
+                        .and().whereLike(GuitarPedal_.name, "%and%")
+                        .toSpecification(), Sort.by("name"));
+        assertEquals(1, pedals.size());
+        assertEquals(2L, pedals.get(0).getId());
+        assertEquals("Deco: Tape Saturation and Double Tracker", pedals.get(0).getName());
+        assertNull(pedals.get(0).getDateSold());
+    }
+
+    @Test
+    void and_withSpecification() {
+        var pedals = guitarPedalRepository.findAll(
+                SpecificationBuilder.withRoot(GuitarPedal.class)
+                        .whereLike(GuitarPedal_.name, "%and%")
+                        .and(SpecificationBuilder.withRoot(GuitarPedal.class)
                                 .whereIsNull(GuitarPedal_.dateSold)
                                 .toSpecification())
                         .toSpecification(), Sort.by("name"));
