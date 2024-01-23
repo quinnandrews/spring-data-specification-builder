@@ -219,6 +219,7 @@ public class SpecificationBuilderIntegrationTest {
     }
 
     @Test
+    @Deprecated
     void orWhere() {
         var pedals = guitarPedalRepository.findAll(
                 SpecificationBuilder.withRoot(GuitarPedal.class)
@@ -278,5 +279,21 @@ public class SpecificationBuilderIntegrationTest {
         assertEquals(2L, pedals.get(0).getId());
         assertEquals("Deco: Tape Saturation and Double Tracker", pedals.get(0).getName());
         assertNull(pedals.get(0).getDateSold());
+    }
+
+    @Test
+    void or_withSpecification() {
+        var pedals = guitarPedalRepository.findAll(
+                SpecificationBuilder.withRoot(GuitarPedal.class)
+                        .whereEquals(GuitarPedal_.id, 2L)
+                        .or(SpecificationBuilder.withRoot(GuitarPedal.class)
+                                .whereEquals(GuitarPedal_.id, 3L)
+                                .toSpecification())
+                        .toSpecification(), Sort.by("name"));
+        assertEquals(2, pedals.size());
+        assertEquals(2L, pedals.get(0).getId());
+        assertEquals("Deco: Tape Saturation and Double Tracker", pedals.get(0).getName());
+        assertEquals(3L, pedals.get(1).getId());
+        assertEquals("Soft Focus Reverb", pedals.get(1).getName());
     }
 }

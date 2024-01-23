@@ -52,16 +52,21 @@ public class SpecificationBuilder<T> {
         return where(specification);
     }
 
+    public SpecificationBuilder<T> or(final Specification<T> specification) {
+        Objects.requireNonNull(specification, "Argument 'specification' cannot be null.");
+        this.specification = this.specification == null ?
+                Specification.where(specification) : this.specification.or(specification);
+        return this;
+    }
+
     @Deprecated
     public SpecificationBuilder<T> andWhere(final Specification<T> specification) {
         return where(specification);
     }
 
+    @Deprecated
     public SpecificationBuilder<T> orWhere(final Specification<T> specification) {
-        Objects.requireNonNull(specification, "Argument 'specification' cannot be null.");
-        this.specification = this.specification == null ?
-                Specification.where(specification) : this.specification.or(specification);
-        return this;
+        return or(specification);
     }
 
     public SpecificationBuilder<T> whereEquals(final SingularAttribute<T, ?> attribute,
