@@ -24,7 +24,12 @@ public class SpecificationBuilder<T> {
         // no-op
     }
 
+    @Deprecated
     public static <T> SpecificationBuilder<T> withRoot(final Class<T> root) {
+        return from(root);
+    }
+
+    public static <T> SpecificationBuilder<T> from(final Class<T> root) {
         Objects.requireNonNull(root, "Argument 'root' cannot be null.");
         return new SpecificationBuilder<>();
     }

@@ -263,7 +263,7 @@ public class GuitarPedalSpecifications {
     The next set of examples goes into the details of fetching and utilizing associations.
      */
     public Specification<GuitarPedal> search_example_07(final Integer usedValueGreaterThan) {
-        return SpecificationBuilder.withRoot(GuitarPedal.class)
+        return SpecificationBuilder.from(GuitarPedal.class)
                 .where().isNull(GuitarPedal_.dateSold)
                 .and().isGreaterThan(GuitarPedal_.usedValue, usedValueGreaterThan)
                 .toSpecification();
@@ -346,7 +346,7 @@ public class GuitarPedalSpecifications {
     The next example, Fetch Example #2, begins looking at how to do that.
      */
     public Specification<GuitarPedal> fetch_example_01() {
-        return SpecificationBuilder.withRoot(GuitarPedal.class)
+        return SpecificationBuilder.from(GuitarPedal.class)
                 .fetch(GuitarPedal_.manufacturer)
                 .toSpecification();
     }
@@ -407,7 +407,7 @@ public class GuitarPedalSpecifications {
     associated Collections of Entities.
      */
     public Specification<GuitarPedal> fetch_example_02(final String name) {
-        return SpecificationBuilder.withRoot(GuitarPedal.class)
+        return SpecificationBuilder.from(GuitarPedal.class)
                 .fetch(GuitarPedal_.manufacturer)
                 .where(
                         (root, query, builder) -> {
@@ -442,7 +442,7 @@ public class GuitarPedalSpecifications {
     In the next example, Fetch Example #4, we'll clean this up a bit.
      */
     public Specification<GuitarPedal> fetch_example_03(final Collection<String> tags) {
-        return SpecificationBuilder.withRoot(GuitarPedal.class)
+        return SpecificationBuilder.from(GuitarPedal.class)
                 .fetch(GuitarPedal_.manufacturer)
                 .fetch(GuitarPedal_.tags)
                 .where(
@@ -474,7 +474,7 @@ public class GuitarPedalSpecifications {
     Let's look at the next example, Fetch Example #5, and see what NOT to do.
      */
     public Specification<GuitarPedal> fetch_example_04(final Collection<String> tags) {
-        return SpecificationBuilder.withRoot(GuitarPedal.class)
+        return SpecificationBuilder.from(GuitarPedal.class)
                 .fetch(GuitarPedal_.manufacturer)
                 .fetch(GuitarPedal_.tags)
                 .where(tagsContain(tags))
@@ -514,7 +514,7 @@ public class GuitarPedalSpecifications {
      */
     public Specification<GuitarPedal> fetch_example_05(final Long id,
                                                        final Collection<String> tags) {
-        return SpecificationBuilder.withRoot(GuitarPedal.class)
+        return SpecificationBuilder.from(GuitarPedal.class)
                 .fetch(GuitarPedal_.manufacturer)
                 .fetch(GuitarPedal_.tags)
                 .where(
@@ -561,7 +561,7 @@ public class GuitarPedalSpecifications {
      */
     public Specification<GuitarPedal> fetch_example_06(final Long id,
                                                        final Collection<String> tags) {
-        return SpecificationBuilder.withRoot(GuitarPedal.class)
+        return SpecificationBuilder.from(GuitarPedal.class)
                 .fetch(GuitarPedal_.manufacturer)
                 .fetch(GuitarPedal_.tags)
                 .where(
@@ -654,7 +654,7 @@ public class GuitarPedalSpecifications {
     @SuppressWarnings("unchecked")
     public Specification<GuitarPedal> fetch_example_07(final Long id,
                                                        final Collection<String> tags) {
-        return SpecificationBuilder.withRoot(GuitarPedal.class)
+        return SpecificationBuilder.from(GuitarPedal.class)
                 .fetch(GuitarPedal_.manufacturer)
                 .where(
                         (root, query, builder) -> {

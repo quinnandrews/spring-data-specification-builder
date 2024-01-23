@@ -270,8 +270,8 @@ public class SpecificationBuilderIntegrationTest {
     @Test
     void where_withSpecification() {
         var pedals = guitarPedalRepository.findAll(
-                SpecificationBuilder.withRoot(GuitarPedal.class)
-                        .where(SpecificationBuilder.withRoot(GuitarPedal.class)
+                SpecificationBuilder.from(GuitarPedal.class)
+                        .where(SpecificationBuilder.from(GuitarPedal.class)
                                 .where().isNull(GuitarPedal_.dateSold)
                                 .toSpecification())
                         .and().isLike(GuitarPedal_.name, "%and%")
@@ -285,9 +285,9 @@ public class SpecificationBuilderIntegrationTest {
     @Test
     void and_withSpecification() {
         var pedals = guitarPedalRepository.findAll(
-                SpecificationBuilder.withRoot(GuitarPedal.class)
+                SpecificationBuilder.from(GuitarPedal.class)
                         .where().isLike(GuitarPedal_.name, "%and%")
-                        .and(SpecificationBuilder.withRoot(GuitarPedal.class)
+                        .and(SpecificationBuilder.from(GuitarPedal.class)
                                 .where().isNull(GuitarPedal_.dateSold)
                                 .toSpecification())
                         .toSpecification(), Sort.by("name"));
@@ -300,9 +300,9 @@ public class SpecificationBuilderIntegrationTest {
     @Test
     void or_withSpecification() {
         var pedals = guitarPedalRepository.findAll(
-                SpecificationBuilder.withRoot(GuitarPedal.class)
+                SpecificationBuilder.from(GuitarPedal.class)
                         .where().isEqualTo(GuitarPedal_.id, 2L)
-                        .or(SpecificationBuilder.withRoot(GuitarPedal.class)
+                        .or(SpecificationBuilder.from(GuitarPedal.class)
                                 .where().isEqualTo(GuitarPedal_.id, 3L)
                                 .toSpecification())
                         .toSpecification(), Sort.by("name"));
@@ -316,7 +316,7 @@ public class SpecificationBuilderIntegrationTest {
     @Test
     void isEqualTo() {
         var optionalPedal = guitarPedalRepository.findOne(
-                SpecificationBuilder.withRoot(GuitarPedal.class)
+                SpecificationBuilder.from(GuitarPedal.class)
                         .isEqualTo(GuitarPedal_.id, 3L)
                         .toSpecification());
         assertTrue(optionalPedal.isPresent());
@@ -327,7 +327,7 @@ public class SpecificationBuilderIntegrationTest {
     @Test
     void isNotEqualTo() {
         var pedals = guitarPedalRepository.findAll(
-                SpecificationBuilder.withRoot(GuitarPedal.class)
+                SpecificationBuilder.from(GuitarPedal.class)
                         .isNotEqualTo(GuitarPedal_.id, 3L)
                         .toSpecification());
         assertEquals(3, pedals.size());
@@ -340,7 +340,7 @@ public class SpecificationBuilderIntegrationTest {
     @Test
     void isLike() {
         var pedals = guitarPedalRepository.findAll(
-                SpecificationBuilder.withRoot(GuitarPedal.class)
+                SpecificationBuilder.from(GuitarPedal.class)
                         .isLike(GuitarPedal_.name, "%and%")
                         .toSpecification(), Sort.by("name"));
         assertEquals(2, pedals.size());
@@ -351,7 +351,7 @@ public class SpecificationBuilderIntegrationTest {
     @Test
     void isNotLike() {
         var pedals = guitarPedalRepository.findAll(
-                SpecificationBuilder.withRoot(GuitarPedal.class)
+                SpecificationBuilder.from(GuitarPedal.class)
                         .isNotLike(GuitarPedal_.name, "%and%")
                         .toSpecification(), Sort.by("name"));
         assertEquals(2, pedals.size());
@@ -361,7 +361,7 @@ public class SpecificationBuilderIntegrationTest {
 
     @Test
     void isEqualToOrLike() {
-        var pedals = guitarPedalRepository.findAll(SpecificationBuilder.withRoot(GuitarPedal.class)
+        var pedals = guitarPedalRepository.findAll(SpecificationBuilder.from(GuitarPedal.class)
                 .isEqualToOrLike(GuitarPedal_.name, "Deco%")
                 .toSpecification(), Sort.by("name"));
         assertEquals(1, pedals.size());
@@ -371,7 +371,7 @@ public class SpecificationBuilderIntegrationTest {
     @Test
     void isNull() {
         var pedals = guitarPedalRepository.findAll(
-                SpecificationBuilder.withRoot(GuitarPedal.class)
+                SpecificationBuilder.from(GuitarPedal.class)
                         .isNull(GuitarPedal_.dateSold)
                         .toSpecification(), Sort.by("name"));
         assertEquals(3, pedals.size());
@@ -386,7 +386,7 @@ public class SpecificationBuilderIntegrationTest {
     @Test
     void isNotNull() {
         var pedals = guitarPedalRepository.findAll(
-                SpecificationBuilder.withRoot(GuitarPedal.class)
+                SpecificationBuilder.from(GuitarPedal.class)
                         .isNotNull(GuitarPedal_.dateSold)
                         .toSpecification(), Sort.by("name"));
         assertEquals(1, pedals.size());
@@ -397,7 +397,7 @@ public class SpecificationBuilderIntegrationTest {
     @Test
     void isTrue() {
         var pedals = guitarPedalRepository.findAll(
-                SpecificationBuilder.withRoot(GuitarPedal.class)
+                SpecificationBuilder.from(GuitarPedal.class)
                         .isTrue(GuitarPedal_.hasStereoOutput)
                         .toSpecification(), Sort.by("name"));
         assertEquals(1, pedals.size());
@@ -409,7 +409,7 @@ public class SpecificationBuilderIntegrationTest {
     @Test
     void isFalse() {
         var pedals = guitarPedalRepository.findAll(
-                SpecificationBuilder.withRoot(GuitarPedal.class)
+                SpecificationBuilder.from(GuitarPedal.class)
                         .isFalse(GuitarPedal_.hasStereoOutput)
                         .toSpecification(), Sort.by("name"));
         assertEquals(3, pedals.size());
@@ -424,7 +424,7 @@ public class SpecificationBuilderIntegrationTest {
     @Test
     void isGreaterThan() {
         var pedals = guitarPedalRepository.findAll(
-                SpecificationBuilder.withRoot(GuitarPedal.class)
+                SpecificationBuilder.from(GuitarPedal.class)
                         .isGreaterThan(GuitarPedal_.usedValue, 200)
                         .toSpecification(), Sort.by("name"));
         assertEquals(1, pedals.size());
@@ -435,7 +435,7 @@ public class SpecificationBuilderIntegrationTest {
     @Test
     void isGreaterThanOrEqualTo() {
         var pedals = guitarPedalRepository.findAll(
-                SpecificationBuilder.withRoot(GuitarPedal.class)
+                SpecificationBuilder.from(GuitarPedal.class)
                         .isGreaterThanOrEqualTo(GuitarPedal_.usedValue, 200)
                         .toSpecification(), Sort.by("name"));
         assertEquals(2, pedals.size());
@@ -448,7 +448,7 @@ public class SpecificationBuilderIntegrationTest {
     @Test
     void isLessThan() {
         var pedals = guitarPedalRepository.findAll(
-                SpecificationBuilder.withRoot(GuitarPedal.class)
+                SpecificationBuilder.from(GuitarPedal.class)
                         .isLessThan(GuitarPedal_.usedValue, 150)
                         .toSpecification(), Sort.by("name"));
         assertEquals(1, pedals.size());
@@ -459,7 +459,7 @@ public class SpecificationBuilderIntegrationTest {
     @Test
     void isLessThanOrEqualTo() {
         var pedals = guitarPedalRepository.findAll(
-                SpecificationBuilder.withRoot(GuitarPedal.class)
+                SpecificationBuilder.from(GuitarPedal.class)
                         .isLessThanOrEqualTo(GuitarPedal_.usedValue, 150)
                         .toSpecification(), Sort.by("name"));
         assertEquals(2, pedals.size());
@@ -472,7 +472,7 @@ public class SpecificationBuilderIntegrationTest {
     @Test
     void isBetween() {
         var pedals = guitarPedalRepository.findAll(
-                SpecificationBuilder.withRoot(GuitarPedal.class)
+                SpecificationBuilder.from(GuitarPedal.class)
                         .isBetween(
                                 GuitarPedal_.datePurchased,
                                 LocalDate.of(2021, 7, 19),
@@ -488,7 +488,7 @@ public class SpecificationBuilderIntegrationTest {
     @Test
     void isIn_collection() {
         var pedals = guitarPedalRepository.findAll(
-                SpecificationBuilder.withRoot(GuitarPedal.class)
+                SpecificationBuilder.from(GuitarPedal.class)
                         .isIn(GuitarPedal_.id, List.of(2L, 3L))
                         .toSpecification(), Sort.by("name"));
         assertEquals(2, pedals.size());
@@ -501,7 +501,7 @@ public class SpecificationBuilderIntegrationTest {
     @Test
     void isIn_array() {
         var pedals = guitarPedalRepository.findAll(
-                SpecificationBuilder.withRoot(GuitarPedal.class)
+                SpecificationBuilder.from(GuitarPedal.class)
                         .isIn(GuitarPedal_.id, 2L, 3L)
                         .toSpecification(), Sort.by("name"));
         assertEquals(2, pedals.size());
