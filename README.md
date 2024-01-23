@@ -74,7 +74,7 @@ import org.springframework.data.jpa.domain.Specification;
 public class GuitarPedalSpecifications {
 
     public Specification<GuitarPedal> pedalsNotSoldWithValueGreaterThan(final Integer usedValue) {
-        return SpecificationBuilder.withRoot(GuitarPedal.class)
+        return SpecificationBuilder.from(GuitarPedal.class)
                 .where().isNull(GuitarPedal_.dateSold)
                 .and().isGreaterThan(GuitarPedal_.usedValue, usedValue)
                 .toSpecification();
