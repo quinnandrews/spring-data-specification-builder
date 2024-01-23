@@ -222,7 +222,7 @@ public class GuitarPedalSpecifications {
     first Specification.
 
     However, it's still not quite as easy to read as it could be. But more importantly, there
-    is still the problem where each conjunction of Specifications return a new instance. So, if
+    is still the problem where each conjunction of Specifications returns a new instance. So, if
     you had to do some kind of conditional query building other than checking for null values,
     then you must still contend with the behavior of conjunctions. It's a minor inconvenience,
     but we already have conventions to deal with such things, and this is what the next example,
@@ -264,13 +264,13 @@ public class GuitarPedalSpecifications {
      */
     public Specification<GuitarPedal> search_example_07(final Integer usedValueGreaterThan) {
         return SpecificationBuilder.withRoot(GuitarPedal.class)
-                .whereIsNull(GuitarPedal_.dateSold)
-                .and().whereGreaterThan(GuitarPedal_.usedValue, usedValueGreaterThan)
+                .where().isNull(GuitarPedal_.dateSold)
+                .and().isGreaterThan(GuitarPedal_.usedValue, usedValueGreaterThan)
                 .toSpecification();
     }
 
     /*
-    This example, Fetch Example #1, introduces the withFetch() methods provided by the
+    This example, Fetch Example #1, introduces the fetch() methods provided by the
     SpecificationBuilder to eagerly fetch associated Entities in an optimized way.
 
     If search_example_07() is executed with a value of 75 passed in as its argument, 2 GuitarPedals
@@ -314,7 +314,7 @@ public class GuitarPedalSpecifications {
     and we can make that happen by utilizing what the underlying JPA Criteria API provides and
     encapsulating it in the SpecificationBuilder and SpecificationFactory.
 
-    All we need to do is call withFetch() on the SpecificationBuilder (or fetch() on the
+    All we need to do is call fetch() on the SpecificationBuilder (or fetch() on the
     SpecificationFactory) with the attribute representing the association we want to eagerly fetch.
 
     In this example, Fetch Example #1, we define a fetch of Manufacturer and the SQL is then rendered
@@ -347,12 +347,12 @@ public class GuitarPedalSpecifications {
      */
     public Specification<GuitarPedal> fetch_example_01() {
         return SpecificationBuilder.withRoot(GuitarPedal.class)
-                .withFetch(GuitarPedal_.manufacturer)
+                .fetch(GuitarPedal_.manufacturer)
                 .toSpecification();
     }
 
     /*
-    This example, Fetch Example #2, uses the withFetch() method provided by the
+    This example, Fetch Example #2, uses the fetch() method provided by the
     SpecificationBuilder to eagerly fetch an associated Entity, but it also uses
     the where() method to filter by one of the associated Entity's properties.
 
@@ -370,8 +370,8 @@ public class GuitarPedalSpecifications {
     and it will have no effect on the rendered SQL query. Otherwise, a Criteria Predicate
     is built and returned.
 
-    NOTE: Calling withFetch() is not required to do the filtering. They are independent
-    operations. We call withFetch() simply to limit the number of queries.
+    NOTE: Calling fetch() is not required to do the filtering. They are independent
+    operations. We call fetch() simply to limit the number of queries.
 
     The SQL renders as:
 
@@ -408,7 +408,7 @@ public class GuitarPedalSpecifications {
      */
     public Specification<GuitarPedal> fetch_example_02(final String name) {
         return SpecificationBuilder.withRoot(GuitarPedal.class)
-                .withFetch(GuitarPedal_.manufacturer)
+                .fetch(GuitarPedal_.manufacturer)
                 .where(
                         (root, query, builder) -> {
                             if (SpecificationUtil.noneAreNull(name)) {
@@ -422,7 +422,7 @@ public class GuitarPedalSpecifications {
     }
 
     /*
-    This example, Fetch Example #3, uses the withFetch() method provided by the
+    This example, Fetch Example #3, uses the fetch() method provided by the
     SpecificationBuilder twice, one to eagerly fetch an associated Entity and
     another to eagerly fetch an associated Collection of Entities. It also uses
     the where() method to filter by a property belonging to Entity of the
@@ -443,8 +443,8 @@ public class GuitarPedalSpecifications {
      */
     public Specification<GuitarPedal> fetch_example_03(final Collection<String> tags) {
         return SpecificationBuilder.withRoot(GuitarPedal.class)
-                .withFetch(GuitarPedal_.manufacturer)
-                .withFetch(GuitarPedal_.tags)
+                .fetch(GuitarPedal_.manufacturer)
+                .fetch(GuitarPedal_.tags)
                 .where(
                         (root, query, builder) -> {
                             if (SpecificationUtil.noneAreNull(tags)) {
@@ -475,8 +475,8 @@ public class GuitarPedalSpecifications {
      */
     public Specification<GuitarPedal> fetch_example_04(final Collection<String> tags) {
         return SpecificationBuilder.withRoot(GuitarPedal.class)
-                .withFetch(GuitarPedal_.manufacturer)
-                .withFetch(GuitarPedal_.tags)
+                .fetch(GuitarPedal_.manufacturer)
+                .fetch(GuitarPedal_.tags)
                 .where(tagsContain(tags))
                 .toSpecification();
     }
@@ -515,8 +515,8 @@ public class GuitarPedalSpecifications {
     public Specification<GuitarPedal> fetch_example_05(final Long id,
                                                        final Collection<String> tags) {
         return SpecificationBuilder.withRoot(GuitarPedal.class)
-                .withFetch(GuitarPedal_.manufacturer)
-                .withFetch(GuitarPedal_.tags)
+                .fetch(GuitarPedal_.manufacturer)
+                .fetch(GuitarPedal_.tags)
                 .where(
                         (root, query, builder) -> {
                             if (SpecificationUtil.noneAreNull(id)) {
@@ -562,8 +562,8 @@ public class GuitarPedalSpecifications {
     public Specification<GuitarPedal> fetch_example_06(final Long id,
                                                        final Collection<String> tags) {
         return SpecificationBuilder.withRoot(GuitarPedal.class)
-                .withFetch(GuitarPedal_.manufacturer)
-                .withFetch(GuitarPedal_.tags)
+                .fetch(GuitarPedal_.manufacturer)
+                .fetch(GuitarPedal_.tags)
                 .where(
                         (root, query, builder) -> {
                             if (SpecificationUtil.noneAreNull(id)
@@ -655,7 +655,7 @@ public class GuitarPedalSpecifications {
     public Specification<GuitarPedal> fetch_example_07(final Long id,
                                                        final Collection<String> tags) {
         return SpecificationBuilder.withRoot(GuitarPedal.class)
-                .withFetch(GuitarPedal_.manufacturer)
+                .fetch(GuitarPedal_.manufacturer)
                 .where(
                         (root, query, builder) -> {
                             final var join = (Join<GuitarPedal, GuitarPedalTag>) root.fetch(GuitarPedal_.tags);

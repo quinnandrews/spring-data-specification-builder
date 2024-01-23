@@ -75,8 +75,8 @@ public class GuitarPedalSpecifications {
 
     public Specification<GuitarPedal> pedalsNotSoldWithValueGreaterThan(final Integer usedValue) {
         return SpecificationBuilder.withRoot(GuitarPedal.class)
-                .whereIsNull(GuitarPedal_.dateSold)
-                .and().whereGreaterThan(GuitarPedal_.usedValue, usedValue)
+                .where().isNull(GuitarPedal_.dateSold)
+                .and().isGreaterThan(GuitarPedal_.usedValue, usedValue)
                 .toSpecification();
     }
 }
@@ -104,7 +104,7 @@ public class GuitarPedalService {
     public List<GuitarPedal> getPedalsNotSoldWithValueGreaterThan(final Integer usedValue) {
         return guitarPedalRepository.findAll(
                 guitarPedalSpecifications.pedalsNotSoldWithValueGreaterThan(usedValue), 
-                Sort.by("name")
+                Sort.by(GuitarPedal_.NAME)
         );
     }
 }

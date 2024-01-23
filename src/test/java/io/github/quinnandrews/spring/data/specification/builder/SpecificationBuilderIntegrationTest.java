@@ -21,6 +21,7 @@ public class SpecificationBuilderIntegrationTest {
     private GuitarPedalRepository guitarPedalRepository;
 
     @Test
+    @Deprecated
     void whereEquals() {
         var optionalPedal = guitarPedalRepository.findOne(
                 SpecificationBuilder.withRoot(GuitarPedal.class)
@@ -32,6 +33,7 @@ public class SpecificationBuilderIntegrationTest {
     }
 
     @Test
+    @Deprecated
     void whereNotEquals() {
         var pedals = guitarPedalRepository.findAll(
                 SpecificationBuilder.withRoot(GuitarPedal.class)
@@ -45,6 +47,7 @@ public class SpecificationBuilderIntegrationTest {
     }
 
     @Test
+    @Deprecated
     void whereLike() {
         var pedals = guitarPedalRepository.findAll(
                 SpecificationBuilder.withRoot(GuitarPedal.class)
@@ -56,6 +59,7 @@ public class SpecificationBuilderIntegrationTest {
     }
 
     @Test
+    @Deprecated
     void whereNotLike() {
         var pedals = guitarPedalRepository.findAll(
                 SpecificationBuilder.withRoot(GuitarPedal.class)
@@ -67,6 +71,7 @@ public class SpecificationBuilderIntegrationTest {
     }
 
     @Test
+    @Deprecated
     void whereEqualsOrLike() {
         var pedals = guitarPedalRepository.findAll(SpecificationBuilder.withRoot(GuitarPedal.class)
                 .whereEqualsOrLike(GuitarPedal_.name, "Deco%")
@@ -76,6 +81,7 @@ public class SpecificationBuilderIntegrationTest {
     }
 
     @Test
+    @Deprecated
     void whereIsNull() {
         var pedals = guitarPedalRepository.findAll(
                 SpecificationBuilder.withRoot(GuitarPedal.class)
@@ -91,6 +97,7 @@ public class SpecificationBuilderIntegrationTest {
     }
 
     @Test
+    @Deprecated
     void whereIsNotNull() {
         var pedals = guitarPedalRepository.findAll(
                 SpecificationBuilder.withRoot(GuitarPedal.class)
@@ -102,6 +109,7 @@ public class SpecificationBuilderIntegrationTest {
     }
 
     @Test
+    @Deprecated
     void whereIsTrue() {
         var pedals = guitarPedalRepository.findAll(
                 SpecificationBuilder.withRoot(GuitarPedal.class)
@@ -114,6 +122,7 @@ public class SpecificationBuilderIntegrationTest {
     }
 
     @Test
+    @Deprecated
     void whereIsFalse() {
         var pedals = guitarPedalRepository.findAll(
                 SpecificationBuilder.withRoot(GuitarPedal.class)
@@ -129,6 +138,7 @@ public class SpecificationBuilderIntegrationTest {
     }
 
     @Test
+    @Deprecated
     void whereGreaterThan() {
         var pedals = guitarPedalRepository.findAll(
                 SpecificationBuilder.withRoot(GuitarPedal.class)
@@ -140,6 +150,7 @@ public class SpecificationBuilderIntegrationTest {
     }
 
     @Test
+    @Deprecated
     void whereGreaterThanOrEqualTo() {
         var pedals = guitarPedalRepository.findAll(
                 SpecificationBuilder.withRoot(GuitarPedal.class)
@@ -153,6 +164,7 @@ public class SpecificationBuilderIntegrationTest {
     }
 
     @Test
+    @Deprecated
     void whereLessThan() {
         var pedals = guitarPedalRepository.findAll(
                 SpecificationBuilder.withRoot(GuitarPedal.class)
@@ -164,6 +176,7 @@ public class SpecificationBuilderIntegrationTest {
     }
 
     @Test
+    @Deprecated
     void whereLessThanOrEqualTo() {
         var pedals = guitarPedalRepository.findAll(
                 SpecificationBuilder.withRoot(GuitarPedal.class)
@@ -177,6 +190,7 @@ public class SpecificationBuilderIntegrationTest {
     }
 
     @Test
+    @Deprecated
     void whereBetween() {
         var pedals = guitarPedalRepository.findAll(
                 SpecificationBuilder.withRoot(GuitarPedal.class)
@@ -193,6 +207,7 @@ public class SpecificationBuilderIntegrationTest {
     }
 
     @Test
+    @Deprecated
     void whereIn_collection() {
         var pedals = guitarPedalRepository.findAll(
                 SpecificationBuilder.withRoot(GuitarPedal.class)
@@ -206,6 +221,7 @@ public class SpecificationBuilderIntegrationTest {
     }
 
     @Test
+    @Deprecated
     void whereIn_array() {
         var pedals = guitarPedalRepository.findAll(
                 SpecificationBuilder.withRoot(GuitarPedal.class)
@@ -256,9 +272,9 @@ public class SpecificationBuilderIntegrationTest {
         var pedals = guitarPedalRepository.findAll(
                 SpecificationBuilder.withRoot(GuitarPedal.class)
                         .where(SpecificationBuilder.withRoot(GuitarPedal.class)
-                                .whereIsNull(GuitarPedal_.dateSold)
+                                .where().isNull(GuitarPedal_.dateSold)
                                 .toSpecification())
-                        .and().whereLike(GuitarPedal_.name, "%and%")
+                        .and().isLike(GuitarPedal_.name, "%and%")
                         .toSpecification(), Sort.by("name"));
         assertEquals(1, pedals.size());
         assertEquals(2L, pedals.get(0).getId());
@@ -270,9 +286,9 @@ public class SpecificationBuilderIntegrationTest {
     void and_withSpecification() {
         var pedals = guitarPedalRepository.findAll(
                 SpecificationBuilder.withRoot(GuitarPedal.class)
-                        .whereLike(GuitarPedal_.name, "%and%")
+                        .where().isLike(GuitarPedal_.name, "%and%")
                         .and(SpecificationBuilder.withRoot(GuitarPedal.class)
-                                .whereIsNull(GuitarPedal_.dateSold)
+                                .where().isNull(GuitarPedal_.dateSold)
                                 .toSpecification())
                         .toSpecification(), Sort.by("name"));
         assertEquals(1, pedals.size());
@@ -285,10 +301,208 @@ public class SpecificationBuilderIntegrationTest {
     void or_withSpecification() {
         var pedals = guitarPedalRepository.findAll(
                 SpecificationBuilder.withRoot(GuitarPedal.class)
-                        .whereEquals(GuitarPedal_.id, 2L)
+                        .where().isEqualTo(GuitarPedal_.id, 2L)
                         .or(SpecificationBuilder.withRoot(GuitarPedal.class)
-                                .whereEquals(GuitarPedal_.id, 3L)
+                                .where().isEqualTo(GuitarPedal_.id, 3L)
                                 .toSpecification())
+                        .toSpecification(), Sort.by("name"));
+        assertEquals(2, pedals.size());
+        assertEquals(2L, pedals.get(0).getId());
+        assertEquals("Deco: Tape Saturation and Double Tracker", pedals.get(0).getName());
+        assertEquals(3L, pedals.get(1).getId());
+        assertEquals("Soft Focus Reverb", pedals.get(1).getName());
+    }
+
+    @Test
+    void isEqualTo() {
+        var optionalPedal = guitarPedalRepository.findOne(
+                SpecificationBuilder.withRoot(GuitarPedal.class)
+                        .isEqualTo(GuitarPedal_.id, 3L)
+                        .toSpecification());
+        assertTrue(optionalPedal.isPresent());
+        assertEquals(3L, optionalPedal.get().getId());
+        assertEquals("Soft Focus Reverb", optionalPedal.get().getName());
+    }
+
+    @Test
+    void isNotEqualTo() {
+        var pedals = guitarPedalRepository.findAll(
+                SpecificationBuilder.withRoot(GuitarPedal.class)
+                        .isNotEqualTo(GuitarPedal_.id, 3L)
+                        .toSpecification());
+        assertEquals(3, pedals.size());
+        assertTrue(pedals.stream()
+                .noneMatch(p -> p.getId().equals(3L)));
+        assertTrue(pedals.stream()
+                .noneMatch(p -> p.getName().equals("Soft Focus Reverb")));
+    }
+
+    @Test
+    void isLike() {
+        var pedals = guitarPedalRepository.findAll(
+                SpecificationBuilder.withRoot(GuitarPedal.class)
+                        .isLike(GuitarPedal_.name, "%and%")
+                        .toSpecification(), Sort.by("name"));
+        assertEquals(2, pedals.size());
+        assertEquals("Deco: Tape Saturation and Double Tracker", pedals.get(0).getName());
+        assertEquals("Sneak Attack: Attack/Decay and Tremolo", pedals.get(1).getName());
+    }
+
+    @Test
+    void isNotLike() {
+        var pedals = guitarPedalRepository.findAll(
+                SpecificationBuilder.withRoot(GuitarPedal.class)
+                        .isNotLike(GuitarPedal_.name, "%and%")
+                        .toSpecification(), Sort.by("name"));
+        assertEquals(2, pedals.size());
+        assertEquals("Big Muff Fuzz", pedals.get(0).getName());
+        assertEquals("Soft Focus Reverb", pedals.get(1).getName());
+    }
+
+    @Test
+    void isEqualToOrLike() {
+        var pedals = guitarPedalRepository.findAll(SpecificationBuilder.withRoot(GuitarPedal.class)
+                .isEqualToOrLike(GuitarPedal_.name, "Deco%")
+                .toSpecification(), Sort.by("name"));
+        assertEquals(1, pedals.size());
+        assertEquals("Deco: Tape Saturation and Double Tracker", pedals.get(0).getName());
+    }
+
+    @Test
+    void isNull() {
+        var pedals = guitarPedalRepository.findAll(
+                SpecificationBuilder.withRoot(GuitarPedal.class)
+                        .isNull(GuitarPedal_.dateSold)
+                        .toSpecification(), Sort.by("name"));
+        assertEquals(3, pedals.size());
+        assertEquals("Big Muff Fuzz", pedals.get(0).getName());
+        assertNull(pedals.get(0).getDateSold());
+        assertEquals("Deco: Tape Saturation and Double Tracker", pedals.get(1).getName());
+        assertNull(pedals.get(1).getDateSold());
+        assertEquals("Soft Focus Reverb", pedals.get(2).getName());
+        assertNull(pedals.get(2).getDateSold());
+    }
+
+    @Test
+    void isNotNull() {
+        var pedals = guitarPedalRepository.findAll(
+                SpecificationBuilder.withRoot(GuitarPedal.class)
+                        .isNotNull(GuitarPedal_.dateSold)
+                        .toSpecification(), Sort.by("name"));
+        assertEquals(1, pedals.size());
+        assertEquals("Sneak Attack: Attack/Decay and Tremolo", pedals.get(0).getName());
+        assertNotNull(pedals.get(0).getDateSold());
+    }
+
+    @Test
+    void isTrue() {
+        var pedals = guitarPedalRepository.findAll(
+                SpecificationBuilder.withRoot(GuitarPedal.class)
+                        .isTrue(GuitarPedal_.hasStereoOutput)
+                        .toSpecification(), Sort.by("name"));
+        assertEquals(1, pedals.size());
+        assertEquals("Deco: Tape Saturation and Double Tracker", pedals.get(0).getName());
+        assertTrue(pedals.get(0).getHasStereoOutput());
+
+    }
+
+    @Test
+    void isFalse() {
+        var pedals = guitarPedalRepository.findAll(
+                SpecificationBuilder.withRoot(GuitarPedal.class)
+                        .isFalse(GuitarPedal_.hasStereoOutput)
+                        .toSpecification(), Sort.by("name"));
+        assertEquals(3, pedals.size());
+        assertEquals("Big Muff Fuzz", pedals.get(0).getName());
+        assertFalse(pedals.get(0).getHasStereoOutput());
+        assertEquals("Sneak Attack: Attack/Decay and Tremolo", pedals.get(1).getName());
+        assertFalse(pedals.get(1).getHasStereoOutput());
+        assertEquals("Soft Focus Reverb", pedals.get(2).getName());
+        assertFalse(pedals.get(2).getHasStereoOutput());
+    }
+
+    @Test
+    void isGreaterThan() {
+        var pedals = guitarPedalRepository.findAll(
+                SpecificationBuilder.withRoot(GuitarPedal.class)
+                        .isGreaterThan(GuitarPedal_.usedValue, 200)
+                        .toSpecification(), Sort.by("name"));
+        assertEquals(1, pedals.size());
+        assertEquals("Deco: Tape Saturation and Double Tracker", pedals.get(0).getName());
+        assertEquals(250, pedals.get(0).getUsedValue());
+    }
+
+    @Test
+    void isGreaterThanOrEqualTo() {
+        var pedals = guitarPedalRepository.findAll(
+                SpecificationBuilder.withRoot(GuitarPedal.class)
+                        .isGreaterThanOrEqualTo(GuitarPedal_.usedValue, 200)
+                        .toSpecification(), Sort.by("name"));
+        assertEquals(2, pedals.size());
+        assertEquals("Deco: Tape Saturation and Double Tracker", pedals.get(0).getName());
+        assertEquals(250, pedals.get(0).getUsedValue());
+        assertEquals("Soft Focus Reverb", pedals.get(1).getName());
+        assertEquals(200, pedals.get(1).getUsedValue());
+    }
+
+    @Test
+    void isLessThan() {
+        var pedals = guitarPedalRepository.findAll(
+                SpecificationBuilder.withRoot(GuitarPedal.class)
+                        .isLessThan(GuitarPedal_.usedValue, 150)
+                        .toSpecification(), Sort.by("name"));
+        assertEquals(1, pedals.size());
+        assertEquals("Big Muff Fuzz", pedals.get(0).getName());
+        assertEquals(75, pedals.get(0).getUsedValue());
+    }
+
+    @Test
+    void isLessThanOrEqualTo() {
+        var pedals = guitarPedalRepository.findAll(
+                SpecificationBuilder.withRoot(GuitarPedal.class)
+                        .isLessThanOrEqualTo(GuitarPedal_.usedValue, 150)
+                        .toSpecification(), Sort.by("name"));
+        assertEquals(2, pedals.size());
+        assertEquals("Big Muff Fuzz", pedals.get(0).getName());
+        assertEquals(75, pedals.get(0).getUsedValue());
+        assertEquals("Sneak Attack: Attack/Decay and Tremolo", pedals.get(1).getName());
+        assertEquals(150, pedals.get(1).getUsedValue());
+    }
+
+    @Test
+    void isBetween() {
+        var pedals = guitarPedalRepository.findAll(
+                SpecificationBuilder.withRoot(GuitarPedal.class)
+                        .isBetween(
+                                GuitarPedal_.datePurchased,
+                                LocalDate.of(2021, 7, 19),
+                                LocalDate.of(2022, 9, 11))
+                        .toSpecification(), Sort.by("name"));
+        assertEquals(2, pedals.size());
+        assertEquals("Deco: Tape Saturation and Double Tracker", pedals.get(0).getName());
+        assertEquals(LocalDate.of(2021, 7, 19), pedals.get(0).getDatePurchased());
+        assertEquals("Soft Focus Reverb", pedals.get(1).getName());
+        assertEquals(LocalDate.of(2022, 9, 11), pedals.get(1).getDatePurchased());
+    }
+
+    @Test
+    void isIn_collection() {
+        var pedals = guitarPedalRepository.findAll(
+                SpecificationBuilder.withRoot(GuitarPedal.class)
+                        .isIn(GuitarPedal_.id, List.of(2L, 3L))
+                        .toSpecification(), Sort.by("name"));
+        assertEquals(2, pedals.size());
+        assertEquals(2L, pedals.get(0).getId());
+        assertEquals("Deco: Tape Saturation and Double Tracker", pedals.get(0).getName());
+        assertEquals(3L, pedals.get(1).getId());
+        assertEquals("Soft Focus Reverb", pedals.get(1).getName());
+    }
+
+    @Test
+    void isIn_array() {
+        var pedals = guitarPedalRepository.findAll(
+                SpecificationBuilder.withRoot(GuitarPedal.class)
+                        .isIn(GuitarPedal_.id, 2L, 3L)
                         .toSpecification(), Sort.by("name"));
         assertEquals(2, pedals.size());
         assertEquals(2L, pedals.get(0).getId());

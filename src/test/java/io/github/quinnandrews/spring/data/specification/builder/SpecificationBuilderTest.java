@@ -35,7 +35,7 @@ class SpecificationBuilderTest {
     @Test
     void toSpecification_returnsSpecification_ifAnyDefined() {
         assertNotNull(SpecificationBuilder.withRoot(GuitarPedal.class)
-                .whereEquals(GuitarPedal_.id, 0L)
+                .where().isEqualTo(GuitarPedal_.id, 0L)
                 .toSpecification());
     }
 
@@ -149,6 +149,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereEquals_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
                 .whereEquals(GuitarPedal_.id, 0L);
@@ -157,6 +158,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereEquals_returnsBuilderWithSpecification_evenWhenValueIsNull() {
         var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
                 .whereEquals(GuitarPedal_.id, null);
@@ -165,6 +167,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereEquals_throwsException_whenAttributeIsNull() {
         assertThrows(
                 NullPointerException.class,
@@ -174,6 +177,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereNotEquals_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
                 .whereNotEquals(GuitarPedal_.id, 0L);
@@ -182,6 +186,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereNotEquals_returnsBuilderWithSpecification_evenWhenValueIsNull() {
         var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
                 .whereNotEquals(GuitarPedal_.id, null);
@@ -190,6 +195,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereNotEquals_throwsException_whenAttributeIsNull() {
         assertThrows(
                 NullPointerException.class,
@@ -199,6 +205,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereLike_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
                 .whereLike(GuitarPedal_.name, "%test%");
@@ -207,6 +214,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereLike_returnsBuilderWithSpecification_evenWhenValueIsNull() {
         var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
                 .whereLike(GuitarPedal_.name, null);
@@ -215,6 +223,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereLike_throwsException_whenAttributeIsNull() {
         assertThrows(
                 NullPointerException.class,
@@ -224,6 +233,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereNotLike_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
                 .whereNotLike(GuitarPedal_.name, "%test%");
@@ -232,6 +242,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereNotLike_returnsBuilderWithSpecification_evenWhenValueIsNull() {
         var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
                 .whereNotLike(GuitarPedal_.name, null);
@@ -240,6 +251,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereNotLike_throwsException_whenAttributeIsNull() {
         assertThrows(
                 NullPointerException.class,
@@ -249,6 +261,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereEqualsOrLike_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
                 .whereEqualsOrLike(GuitarPedal_.name, "%test%");
@@ -257,6 +270,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereEqualsOrLike_returnsBuilderWithSpecification_evenWhenValueIsNull() {
         var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
                 .whereEqualsOrLike(GuitarPedal_.name, null);
@@ -265,6 +279,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereEqualsOrLike_throwsException_whenAttributeIsNull() {
         assertThrows(
                 NullPointerException.class,
@@ -274,6 +289,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereIsTrue_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
                 .whereIsTrue(GuitarPedal_.hasStereoOutput);
@@ -282,6 +298,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereIsTrue_throwsException_whenAttributeIsNull() {
         assertThrows(
                 NullPointerException.class,
@@ -291,6 +308,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereIsFalse_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
                 .whereIsFalse(GuitarPedal_.hasStereoOutput);
@@ -299,6 +317,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereIsFalse_throwsException_whenAttributeIsNull() {
         assertThrows(
                 NullPointerException.class,
@@ -308,6 +327,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereIsNull_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
                 .whereIsNull(GuitarPedal_.dateSold);
@@ -316,6 +336,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereIsNull_throwsException_whenAttributeIsNull() {
         assertThrows(
                 NullPointerException.class,
@@ -325,6 +346,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereIsNotNull_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
                 .whereIsNotNull(GuitarPedal_.dateSold);
@@ -333,6 +355,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereIsNotNull_throwsException_whenAttributeIsNull() {
         assertThrows(
                 NullPointerException.class,
@@ -342,6 +365,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereGreaterThan_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
                 .whereGreaterThan(GuitarPedal_.usedValue, 0);
@@ -350,6 +374,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereGreaterThan_returnsBuilderWithSpecification_evenWhenValueIsNull() {
         var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
                 .whereGreaterThan(GuitarPedal_.usedValue, null);
@@ -358,6 +383,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereGreaterThan_throwsException_whenAttributeIsNull() {
         assertThrows(
                 NullPointerException.class,
@@ -367,6 +393,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereGreaterThanOrEqualTo_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
                 .whereGreaterThanOrEqualTo(GuitarPedal_.usedValue, 0);
@@ -375,6 +402,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereGreaterThanOrEqualTo_returnsBuilderWithSpecification_evenWhenValueIsNull() {
         var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
                 .whereGreaterThanOrEqualTo(GuitarPedal_.usedValue, null);
@@ -383,6 +411,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereGreaterThanOrEqualTo_throwsException_whenAttributeIsNull() {
         assertThrows(
                 NullPointerException.class,
@@ -392,6 +421,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereLessThan_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
                 .whereLessThan(GuitarPedal_.usedValue, 0);
@@ -400,6 +430,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereLessThan_returnsBuilderWithSpecification_evenWhenValueIsNull() {
         var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
                 .whereLessThan(GuitarPedal_.usedValue, null);
@@ -408,6 +439,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereLessThan_throwsException_whenAttributeIsNull() {
         assertThrows(
                 NullPointerException.class,
@@ -417,6 +449,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereLessThanOrEqualTo_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
                 .whereLessThanOrEqualTo(GuitarPedal_.usedValue, 0);
@@ -425,6 +458,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereLessThanOrEqualTo_returnsBuilderWithSpecification_evenWhenValueIsNull() {
         var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
                 .whereLessThanOrEqualTo(GuitarPedal_.usedValue, null);
@@ -433,6 +467,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereLessThanOrEqualTo_throwsException_whenAttributeIsNull() {
         assertThrows(
                 NullPointerException.class,
@@ -442,6 +477,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereBetween_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
                 .whereBetween(
@@ -454,6 +490,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereBetween_returnsBuilderWithSpecification_evenWhenEitherValueIsNull() {
         var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
                 .whereBetween(GuitarPedal_.usedValue, null, null);
@@ -472,6 +509,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereBetween_throwsException_whenAttributeIsNull() {
         assertThrows(
                 NullPointerException.class,
@@ -481,6 +519,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereIn_collection_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
                 .whereIn(GuitarPedal_.id, List.of(1L, 2L, 3L));
@@ -489,6 +528,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereIn_collection_returnsBuilderWithSpecification_evenWhenValueIsNull() {
         var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
                 .whereIn(GuitarPedal_.id, (Collection<?>) null);
@@ -497,6 +537,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereIn_collection_throwsException_whenAttributeIsNull() {
         assertThrows(
                 NullPointerException.class,
@@ -506,6 +547,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereIn_array_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
                 .whereIn(GuitarPedal_.id, 1L, 2L, 3L);
@@ -514,6 +556,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereIn_array_returnsBuilderWithSpecification_evenWhenValueIsNull() {
         var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
                 .whereIn(GuitarPedal_.id, (Object) null);
@@ -522,6 +565,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void whereIn_array_throwsException_whenAttributeIsNull() {
         assertThrows(
                 NullPointerException.class,
@@ -531,6 +575,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void withFetch_singular_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
                 .withFetch(GuitarPedal_.manufacturer);
@@ -539,6 +584,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void withFetch_singular_throwsException_whenAttributeIsNull() {
         assertThrows(
                 NullPointerException.class,
@@ -548,6 +594,7 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void withFetch_list_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
                 .withFetch(GuitarPedal_.tags);
@@ -556,11 +603,428 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    @Deprecated
     void withFetch_list_throwsException_whenAttributeIsNull() {
         assertThrows(
                 NullPointerException.class,
                 () -> SpecificationBuilder.withRoot(GuitarPedal.class)
                         .withFetch((ListAttribute<GuitarPedal, Object>) null)
+        );
+    }
+
+    @Test
+    void isEqualTo_returnsBuilderWithSpecification() {
+        var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
+                .isEqualTo(GuitarPedal_.id, 0L);
+        assertNotNull(builder);
+        assertNotNull(builder.toSpecification());
+    }
+
+    @Test
+    void isEqualTo_returnsBuilderWithSpecification_evenWhenValueIsNull() {
+        var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
+                .isEqualTo(GuitarPedal_.id, null);
+        assertNotNull(builder);
+        assertNotNull(builder.toSpecification());
+    }
+
+    @Test
+    void isEqualTo_throwsException_whenAttributeIsNull() {
+        assertThrows(
+                NullPointerException.class,
+                () -> SpecificationBuilder.withRoot(GuitarPedal.class)
+                        .isEqualTo(null, 0L)
+        );
+    }
+
+    @Test
+    void isNotEqualTo_returnsBuilderWithSpecification() {
+        var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
+                .isNotEqualTo(GuitarPedal_.id, 0L);
+        assertNotNull(builder);
+        assertNotNull(builder.toSpecification());
+    }
+
+    @Test
+    void isNotEqualTo_returnsBuilderWithSpecification_evenWhenValueIsNull() {
+        var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
+                .isNotEqualTo(GuitarPedal_.id, null);
+        assertNotNull(builder);
+        assertNotNull(builder.toSpecification());
+    }
+
+    @Test
+    void isNotEqualTo_throwsException_whenAttributeIsNull() {
+        assertThrows(
+                NullPointerException.class,
+                () -> SpecificationBuilder.withRoot(GuitarPedal.class)
+                        .isNotEqualTo(null, 0L)
+        );
+    }
+
+    @Test
+    void isLike_returnsBuilderWithSpecification() {
+        var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
+                .isLike(GuitarPedal_.name, "%test%");
+        assertNotNull(builder);
+        assertNotNull(builder.toSpecification());
+    }
+
+    @Test
+    void isLike_returnsBuilderWithSpecification_evenWhenValueIsNull() {
+        var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
+                .isLike(GuitarPedal_.name, null);
+        assertNotNull(builder);
+        assertNotNull(builder.toSpecification());
+    }
+
+    @Test
+    void isLike_throwsException_whenAttributeIsNull() {
+        assertThrows(
+                NullPointerException.class,
+                () -> SpecificationBuilder.withRoot(GuitarPedal.class)
+                        .isLike(null, "%test%")
+        );
+    }
+
+    @Test
+    void isNotLike_returnsBuilderWithSpecification() {
+        var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
+                .isNotLike(GuitarPedal_.name, "%test%");
+        assertNotNull(builder);
+        assertNotNull(builder.toSpecification());
+    }
+
+    @Test
+    void isNotLike_returnsBuilderWithSpecification_evenWhenValueIsNull() {
+        var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
+                .isNotLike(GuitarPedal_.name, null);
+        assertNotNull(builder);
+        assertNotNull(builder.toSpecification());
+    }
+
+    @Test
+    void isNotLike_throwsException_whenAttributeIsNull() {
+        assertThrows(
+                NullPointerException.class,
+                () -> SpecificationBuilder.withRoot(GuitarPedal.class)
+                        .isNotLike(null, "%test%")
+        );
+    }
+
+    @Test
+    void isEqualToOrLike_returnsBuilderWithSpecification() {
+        var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
+                .isEqualToOrLike(GuitarPedal_.name, "%test%");
+        assertNotNull(builder);
+        assertNotNull(builder.toSpecification());
+    }
+
+    @Test
+    void isEqualsOrLike_returnsBuilderWithSpecification_evenWhenValueIsNull() {
+        var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
+                .isEqualToOrLike(GuitarPedal_.name, null);
+        assertNotNull(builder);
+        assertNotNull(builder.toSpecification());
+    }
+
+    @Test
+    void isEqualToOrLike_throwsException_whenAttributeIsNull() {
+        assertThrows(
+                NullPointerException.class,
+                () -> SpecificationBuilder.withRoot(GuitarPedal.class)
+                        .isEqualToOrLike(null, "%test%")
+        );
+    }
+
+    @Test
+    void isIsTrue_returnsBuilderWithSpecification() {
+        var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
+                .isTrue(GuitarPedal_.hasStereoOutput);
+        assertNotNull(builder);
+        assertNotNull(builder.toSpecification());
+    }
+
+    @Test
+    void isIsTrue_throwsException_whenAttributeIsNull() {
+        assertThrows(
+                NullPointerException.class,
+                () -> SpecificationBuilder.withRoot(GuitarPedal.class)
+                        .isTrue(null)
+        );
+    }
+
+    @Test
+    void isIsFalse_returnsBuilderWithSpecification() {
+        var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
+                .isFalse(GuitarPedal_.hasStereoOutput);
+        assertNotNull(builder);
+        assertNotNull(builder.toSpecification());
+    }
+
+    @Test
+    void isIsFalse_throwsException_whenAttributeIsNull() {
+        assertThrows(
+                NullPointerException.class,
+                () -> SpecificationBuilder.withRoot(GuitarPedal.class)
+                        .isFalse(null)
+        );
+    }
+
+    @Test
+    void isIsNull_returnsBuilderWithSpecification() {
+        var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
+                .isNull(GuitarPedal_.dateSold);
+        assertNotNull(builder);
+        assertNotNull(builder.toSpecification());
+    }
+
+    @Test
+    void isIsNull_throwsException_whenAttributeIsNull() {
+        assertThrows(
+                NullPointerException.class,
+                () -> SpecificationBuilder.withRoot(GuitarPedal.class)
+                        .isNull(null)
+        );
+    }
+
+    @Test
+    void isIsNotNull_returnsBuilderWithSpecification() {
+        var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
+                .isNotNull(GuitarPedal_.dateSold);
+        assertNotNull(builder);
+        assertNotNull(builder.toSpecification());
+    }
+
+    @Test
+    void isIsNotNull_throwsException_whenAttributeIsNull() {
+        assertThrows(
+                NullPointerException.class,
+                () -> SpecificationBuilder.withRoot(GuitarPedal.class)
+                        .isNotNull(null)
+        );
+    }
+
+    @Test
+    void isGreaterThan_returnsBuilderWithSpecification() {
+        var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
+                .isGreaterThan(GuitarPedal_.usedValue, 0);
+        assertNotNull(builder);
+        assertNotNull(builder.toSpecification());
+    }
+
+    @Test
+    void isGreaterThan_returnsBuilderWithSpecification_evenWhenValueIsNull() {
+        var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
+                .isGreaterThan(GuitarPedal_.usedValue, null);
+        assertNotNull(builder);
+        assertNotNull(builder.toSpecification());
+    }
+
+    @Test
+    void isGreaterThan_throwsException_whenAttributeIsNull() {
+        assertThrows(
+                NullPointerException.class,
+                () -> SpecificationBuilder.withRoot(GuitarPedal.class)
+                        .isGreaterThan(null, 0)
+        );
+    }
+
+    @Test
+    void isGreaterThanOrEqualTo_returnsBuilderWithSpecification() {
+        var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
+                .isGreaterThanOrEqualTo(GuitarPedal_.usedValue, 0);
+        assertNotNull(builder);
+        assertNotNull(builder.toSpecification());
+    }
+
+    @Test
+    void isGreaterThanOrEqualTo_returnsBuilderWithSpecification_evenWhenValueIsNull() {
+        var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
+                .isGreaterThanOrEqualTo(GuitarPedal_.usedValue, null);
+        assertNotNull(builder);
+        assertNotNull(builder.toSpecification());
+    }
+
+    @Test
+    void isGreaterThanOrEqualTo_throwsException_whenAttributeIsNull() {
+        assertThrows(
+                NullPointerException.class,
+                () -> SpecificationBuilder.withRoot(GuitarPedal.class)
+                        .isGreaterThanOrEqualTo(null, 0)
+        );
+    }
+
+    @Test
+    void isLessThan_returnsBuilderWithSpecification() {
+        var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
+                .isLessThan(GuitarPedal_.usedValue, 0);
+        assertNotNull(builder);
+        assertNotNull(builder.toSpecification());
+    }
+
+    @Test
+    void isLessThan_returnsBuilderWithSpecification_evenWhenValueIsNull() {
+        var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
+                .isLessThan(GuitarPedal_.usedValue, null);
+        assertNotNull(builder);
+        assertNotNull(builder.toSpecification());
+    }
+
+    @Test
+    void isLessThan_throwsException_whenAttributeIsNull() {
+        assertThrows(
+                NullPointerException.class,
+                () -> SpecificationBuilder.withRoot(GuitarPedal.class)
+                        .isLessThan(null, 0)
+        );
+    }
+
+    @Test
+    void isLessThanOrEqualTo_returnsBuilderWithSpecification() {
+        var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
+                .isLessThanOrEqualTo(GuitarPedal_.usedValue, 0);
+        assertNotNull(builder);
+        assertNotNull(builder.toSpecification());
+    }
+
+    @Test
+    void isLessThanOrEqualTo_returnsBuilderWithSpecification_evenWhenValueIsNull() {
+        var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
+                .isLessThanOrEqualTo(GuitarPedal_.usedValue, null);
+        assertNotNull(builder);
+        assertNotNull(builder.toSpecification());
+    }
+
+    @Test
+    void isLessThanOrEqualTo_throwsException_whenAttributeIsNull() {
+        assertThrows(
+                NullPointerException.class,
+                () -> SpecificationBuilder.withRoot(GuitarPedal.class)
+                        .isLessThanOrEqualTo(null, 0)
+        );
+    }
+
+    @Test
+    void isBetween_returnsBuilderWithSpecification() {
+        var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
+                .isBetween(
+                        GuitarPedal_.datePurchased,
+                        LocalDate.now(),
+                        LocalDate.now().plusDays(7)
+                );
+        assertNotNull(builder);
+        assertNotNull(builder.toSpecification());
+    }
+
+    @Test
+    void isBetween_returnsBuilderWithSpecification_evenWhenEitherValueIsNull() {
+        var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
+                .isBetween(GuitarPedal_.usedValue, null, null);
+        assertNotNull(builder);
+        assertNotNull(builder.toSpecification());
+
+        builder = SpecificationBuilder.withRoot(GuitarPedal.class)
+                .isBetween(GuitarPedal_.usedValue, 0, null);
+        assertNotNull(builder);
+        assertNotNull(builder.toSpecification());
+
+        builder = SpecificationBuilder.withRoot(GuitarPedal.class)
+                .isBetween(GuitarPedal_.usedValue, null, 9);
+        assertNotNull(builder);
+        assertNotNull(builder.toSpecification());
+    }
+
+    @Test
+    void isBetween_throwsException_whenAttributeIsNull() {
+        assertThrows(
+                NullPointerException.class,
+                () -> SpecificationBuilder.withRoot(GuitarPedal.class)
+                        .isBetween(null, 0L, 9L)
+        );
+    }
+
+    @Test
+    void isIn_collection_returnsBuilderWithSpecification() {
+        var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
+                .isIn(GuitarPedal_.id, List.of(1L, 2L, 3L));
+        assertNotNull(builder);
+        assertNotNull(builder.toSpecification());
+    }
+
+    @Test
+    void isIn_collection_returnsBuilderWithSpecification_evenWhenValueIsNull() {
+        var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
+                .isIn(GuitarPedal_.id, (Collection<?>) null);
+        assertNotNull(builder);
+        assertNotNull(builder.toSpecification());
+    }
+
+    @Test
+    void isIn_collection_throwsException_whenAttributeIsNull() {
+        assertThrows(
+                NullPointerException.class,
+                () -> SpecificationBuilder.withRoot(GuitarPedal.class)
+                        .isIn(null, List.of(1L, 2L, 3L))
+        );
+    }
+
+    @Test
+    void isIn_array_returnsBuilderWithSpecification() {
+        var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
+                .isIn(GuitarPedal_.id, 1L, 2L, 3L);
+        assertNotNull(builder);
+        assertNotNull(builder.toSpecification());
+    }
+
+    @Test
+    void isIn_array_returnsBuilderWithSpecification_evenWhenValueIsNull() {
+        var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
+                .isIn(GuitarPedal_.id, (Object) null);
+        assertNotNull(builder);
+        assertNotNull(builder.toSpecification());
+    }
+
+    @Test
+    void isIn_array_throwsException_whenAttributeIsNull() {
+        assertThrows(
+                NullPointerException.class,
+                () -> SpecificationBuilder.withRoot(GuitarPedal.class)
+                        .isIn(null, 1L, 2L, 3L)
+        );
+    }
+
+    @Test
+    void fetch_singular_returnsBuilderWithSpecification() {
+        var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
+                .fetch(GuitarPedal_.manufacturer);
+        assertNotNull(builder);
+        assertNotNull(builder.toSpecification());
+    }
+
+    @Test
+    void fetch_singular_throwsException_whenAttributeIsNull() {
+        assertThrows(
+                NullPointerException.class,
+                () -> SpecificationBuilder.withRoot(GuitarPedal.class)
+                        .fetch((SingularAttribute<GuitarPedal, Object>) null)
+        );
+    }
+
+    @Test
+    void fetch_list_returnsBuilderWithSpecification() {
+        var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
+                .fetch(GuitarPedal_.tags);
+        assertNotNull(builder);
+        assertNotNull(builder.toSpecification());
+    }
+
+    @Test
+    void fetch_list_throwsException_whenAttributeIsNull() {
+        assertThrows(
+                NullPointerException.class,
+                () -> SpecificationBuilder.withRoot(GuitarPedal.class)
+                        .fetch((ListAttribute<GuitarPedal, Object>) null)
         );
     }
 }
