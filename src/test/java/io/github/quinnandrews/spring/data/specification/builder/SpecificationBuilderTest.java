@@ -128,6 +128,13 @@ class SpecificationBuilderTest {
     }
 
     @Test
+    void with_returnsBuilder() {
+        var builder = SpecificationBuilder.from(GuitarPedal.class)
+                .with();
+        assertNotNull(builder);
+    }
+
+    @Test
     @Deprecated
     void andWhere_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
@@ -632,7 +639,7 @@ class SpecificationBuilderTest {
     @Test
     void isEqualTo_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.from(GuitarPedal.class)
-                .isEqualTo(GuitarPedal_.id, 0L);
+                .where().isEqualTo(GuitarPedal_.id, 0L);
         assertNotNull(builder);
         assertNotNull(builder.toSpecification());
     }
@@ -640,7 +647,7 @@ class SpecificationBuilderTest {
     @Test
     void isEqualTo_returnsBuilderWithSpecification_evenWhenValueIsNull() {
         var builder = SpecificationBuilder.from(GuitarPedal.class)
-                .isEqualTo(GuitarPedal_.id, null);
+                .where().isEqualTo(GuitarPedal_.id, null);
         assertNotNull(builder);
         assertNotNull(builder.toSpecification());
     }
@@ -650,14 +657,14 @@ class SpecificationBuilderTest {
         assertThrows(
                 NullPointerException.class,
                 () -> SpecificationBuilder.from(GuitarPedal.class)
-                        .isEqualTo(null, 0L)
+                        .where().isEqualTo(null, 0L)
         );
     }
 
     @Test
     void isNotEqualTo_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.from(GuitarPedal.class)
-                .isNotEqualTo(GuitarPedal_.id, 0L);
+                .where().isNotEqualTo(GuitarPedal_.id, 0L);
         assertNotNull(builder);
         assertNotNull(builder.toSpecification());
     }
@@ -665,7 +672,7 @@ class SpecificationBuilderTest {
     @Test
     void isNotEqualTo_returnsBuilderWithSpecification_evenWhenValueIsNull() {
         var builder = SpecificationBuilder.from(GuitarPedal.class)
-                .isNotEqualTo(GuitarPedal_.id, null);
+                .where().isNotEqualTo(GuitarPedal_.id, null);
         assertNotNull(builder);
         assertNotNull(builder.toSpecification());
     }
@@ -675,14 +682,14 @@ class SpecificationBuilderTest {
         assertThrows(
                 NullPointerException.class,
                 () -> SpecificationBuilder.from(GuitarPedal.class)
-                        .isNotEqualTo(null, 0L)
+                        .where().isNotEqualTo(null, 0L)
         );
     }
 
     @Test
     void isLike_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.from(GuitarPedal.class)
-                .isLike(GuitarPedal_.name, "%test%");
+                .where().isLike(GuitarPedal_.name, "%test%");
         assertNotNull(builder);
         assertNotNull(builder.toSpecification());
     }
@@ -690,7 +697,7 @@ class SpecificationBuilderTest {
     @Test
     void isLike_returnsBuilderWithSpecification_evenWhenValueIsNull() {
         var builder = SpecificationBuilder.from(GuitarPedal.class)
-                .isLike(GuitarPedal_.name, null);
+                .where().isLike(GuitarPedal_.name, null);
         assertNotNull(builder);
         assertNotNull(builder.toSpecification());
     }
@@ -700,14 +707,14 @@ class SpecificationBuilderTest {
         assertThrows(
                 NullPointerException.class,
                 () -> SpecificationBuilder.from(GuitarPedal.class)
-                        .isLike(null, "%test%")
+                        .where().isLike(null, "%test%")
         );
     }
 
     @Test
     void isNotLike_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.from(GuitarPedal.class)
-                .isNotLike(GuitarPedal_.name, "%test%");
+                .where().isNotLike(GuitarPedal_.name, "%test%");
         assertNotNull(builder);
         assertNotNull(builder.toSpecification());
     }
@@ -715,7 +722,7 @@ class SpecificationBuilderTest {
     @Test
     void isNotLike_returnsBuilderWithSpecification_evenWhenValueIsNull() {
         var builder = SpecificationBuilder.from(GuitarPedal.class)
-                .isNotLike(GuitarPedal_.name, null);
+                .where().isNotLike(GuitarPedal_.name, null);
         assertNotNull(builder);
         assertNotNull(builder.toSpecification());
     }
@@ -725,14 +732,14 @@ class SpecificationBuilderTest {
         assertThrows(
                 NullPointerException.class,
                 () -> SpecificationBuilder.from(GuitarPedal.class)
-                        .isNotLike(null, "%test%")
+                        .where().isNotLike(null, "%test%")
         );
     }
 
     @Test
     void isEqualToOrLike_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.from(GuitarPedal.class)
-                .isEqualToOrLike(GuitarPedal_.name, "%test%");
+                .where().isEqualToOrLike(GuitarPedal_.name, "%test%");
         assertNotNull(builder);
         assertNotNull(builder.toSpecification());
     }
@@ -740,7 +747,7 @@ class SpecificationBuilderTest {
     @Test
     void isEqualsOrLike_returnsBuilderWithSpecification_evenWhenValueIsNull() {
         var builder = SpecificationBuilder.from(GuitarPedal.class)
-                .isEqualToOrLike(GuitarPedal_.name, null);
+                .where().isEqualToOrLike(GuitarPedal_.name, null);
         assertNotNull(builder);
         assertNotNull(builder.toSpecification());
     }
@@ -750,14 +757,14 @@ class SpecificationBuilderTest {
         assertThrows(
                 NullPointerException.class,
                 () -> SpecificationBuilder.from(GuitarPedal.class)
-                        .isEqualToOrLike(null, "%test%")
+                        .where().isEqualToOrLike(null, "%test%")
         );
     }
 
     @Test
     void isIsTrue_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.from(GuitarPedal.class)
-                .isTrue(GuitarPedal_.hasStereoOutput);
+                .where().isTrue(GuitarPedal_.hasStereoOutput);
         assertNotNull(builder);
         assertNotNull(builder.toSpecification());
     }
@@ -767,14 +774,14 @@ class SpecificationBuilderTest {
         assertThrows(
                 NullPointerException.class,
                 () -> SpecificationBuilder.from(GuitarPedal.class)
-                        .isTrue(null)
+                        .where().isTrue(null)
         );
     }
 
     @Test
     void isIsFalse_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.from(GuitarPedal.class)
-                .isFalse(GuitarPedal_.hasStereoOutput);
+                .where().isFalse(GuitarPedal_.hasStereoOutput);
         assertNotNull(builder);
         assertNotNull(builder.toSpecification());
     }
@@ -784,14 +791,14 @@ class SpecificationBuilderTest {
         assertThrows(
                 NullPointerException.class,
                 () -> SpecificationBuilder.from(GuitarPedal.class)
-                        .isFalse(null)
+                        .where().isFalse(null)
         );
     }
 
     @Test
     void isIsNull_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.from(GuitarPedal.class)
-                .isNull(GuitarPedal_.dateSold);
+                .where().isNull(GuitarPedal_.dateSold);
         assertNotNull(builder);
         assertNotNull(builder.toSpecification());
     }
@@ -801,14 +808,14 @@ class SpecificationBuilderTest {
         assertThrows(
                 NullPointerException.class,
                 () -> SpecificationBuilder.from(GuitarPedal.class)
-                        .isNull(null)
+                        .where().isNull(null)
         );
     }
 
     @Test
     void isIsNotNull_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.from(GuitarPedal.class)
-                .isNotNull(GuitarPedal_.dateSold);
+                .where().isNotNull(GuitarPedal_.dateSold);
         assertNotNull(builder);
         assertNotNull(builder.toSpecification());
     }
@@ -818,14 +825,14 @@ class SpecificationBuilderTest {
         assertThrows(
                 NullPointerException.class,
                 () -> SpecificationBuilder.from(GuitarPedal.class)
-                        .isNotNull(null)
+                        .where().isNotNull(null)
         );
     }
 
     @Test
     void isGreaterThan_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.from(GuitarPedal.class)
-                .isGreaterThan(GuitarPedal_.usedValue, 0);
+                .where().isGreaterThan(GuitarPedal_.usedValue, 0);
         assertNotNull(builder);
         assertNotNull(builder.toSpecification());
     }
@@ -833,7 +840,7 @@ class SpecificationBuilderTest {
     @Test
     void isGreaterThan_returnsBuilderWithSpecification_evenWhenValueIsNull() {
         var builder = SpecificationBuilder.from(GuitarPedal.class)
-                .isGreaterThan(GuitarPedal_.usedValue, null);
+                .where().isGreaterThan(GuitarPedal_.usedValue, null);
         assertNotNull(builder);
         assertNotNull(builder.toSpecification());
     }
@@ -843,14 +850,14 @@ class SpecificationBuilderTest {
         assertThrows(
                 NullPointerException.class,
                 () -> SpecificationBuilder.from(GuitarPedal.class)
-                        .isGreaterThan(null, 0)
+                        .where().isGreaterThan(null, 0)
         );
     }
 
     @Test
     void isGreaterThanOrEqualTo_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.from(GuitarPedal.class)
-                .isGreaterThanOrEqualTo(GuitarPedal_.usedValue, 0);
+                .where().isGreaterThanOrEqualTo(GuitarPedal_.usedValue, 0);
         assertNotNull(builder);
         assertNotNull(builder.toSpecification());
     }
@@ -858,7 +865,7 @@ class SpecificationBuilderTest {
     @Test
     void isGreaterThanOrEqualTo_returnsBuilderWithSpecification_evenWhenValueIsNull() {
         var builder = SpecificationBuilder.from(GuitarPedal.class)
-                .isGreaterThanOrEqualTo(GuitarPedal_.usedValue, null);
+                .where().isGreaterThanOrEqualTo(GuitarPedal_.usedValue, null);
         assertNotNull(builder);
         assertNotNull(builder.toSpecification());
     }
@@ -868,14 +875,14 @@ class SpecificationBuilderTest {
         assertThrows(
                 NullPointerException.class,
                 () -> SpecificationBuilder.from(GuitarPedal.class)
-                        .isGreaterThanOrEqualTo(null, 0)
+                        .where().isGreaterThanOrEqualTo(null, 0)
         );
     }
 
     @Test
     void isLessThan_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.from(GuitarPedal.class)
-                .isLessThan(GuitarPedal_.usedValue, 0);
+                .where().isLessThan(GuitarPedal_.usedValue, 0);
         assertNotNull(builder);
         assertNotNull(builder.toSpecification());
     }
@@ -883,7 +890,7 @@ class SpecificationBuilderTest {
     @Test
     void isLessThan_returnsBuilderWithSpecification_evenWhenValueIsNull() {
         var builder = SpecificationBuilder.from(GuitarPedal.class)
-                .isLessThan(GuitarPedal_.usedValue, null);
+                .where().isLessThan(GuitarPedal_.usedValue, null);
         assertNotNull(builder);
         assertNotNull(builder.toSpecification());
     }
@@ -893,14 +900,14 @@ class SpecificationBuilderTest {
         assertThrows(
                 NullPointerException.class,
                 () -> SpecificationBuilder.from(GuitarPedal.class)
-                        .isLessThan(null, 0)
+                        .where().isLessThan(null, 0)
         );
     }
 
     @Test
     void isLessThanOrEqualTo_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.from(GuitarPedal.class)
-                .isLessThanOrEqualTo(GuitarPedal_.usedValue, 0);
+                .where().isLessThanOrEqualTo(GuitarPedal_.usedValue, 0);
         assertNotNull(builder);
         assertNotNull(builder.toSpecification());
     }
@@ -908,7 +915,7 @@ class SpecificationBuilderTest {
     @Test
     void isLessThanOrEqualTo_returnsBuilderWithSpecification_evenWhenValueIsNull() {
         var builder = SpecificationBuilder.from(GuitarPedal.class)
-                .isLessThanOrEqualTo(GuitarPedal_.usedValue, null);
+                .where().isLessThanOrEqualTo(GuitarPedal_.usedValue, null);
         assertNotNull(builder);
         assertNotNull(builder.toSpecification());
     }
@@ -918,14 +925,14 @@ class SpecificationBuilderTest {
         assertThrows(
                 NullPointerException.class,
                 () -> SpecificationBuilder.from(GuitarPedal.class)
-                        .isLessThanOrEqualTo(null, 0)
+                        .where().isLessThanOrEqualTo(null, 0)
         );
     }
 
     @Test
     void isBetween_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.from(GuitarPedal.class)
-                .isBetween(
+                .where().isBetween(
                         GuitarPedal_.datePurchased,
                         LocalDate.now(),
                         LocalDate.now().plusDays(7)
@@ -937,17 +944,17 @@ class SpecificationBuilderTest {
     @Test
     void isBetween_returnsBuilderWithSpecification_evenWhenEitherValueIsNull() {
         var builder = SpecificationBuilder.from(GuitarPedal.class)
-                .isBetween(GuitarPedal_.usedValue, null, null);
+                .where().isBetween(GuitarPedal_.usedValue, null, null);
         assertNotNull(builder);
         assertNotNull(builder.toSpecification());
 
         builder = SpecificationBuilder.from(GuitarPedal.class)
-                .isBetween(GuitarPedal_.usedValue, 0, null);
+                .where().isBetween(GuitarPedal_.usedValue, 0, null);
         assertNotNull(builder);
         assertNotNull(builder.toSpecification());
 
         builder = SpecificationBuilder.from(GuitarPedal.class)
-                .isBetween(GuitarPedal_.usedValue, null, 9);
+                .where().isBetween(GuitarPedal_.usedValue, null, 9);
         assertNotNull(builder);
         assertNotNull(builder.toSpecification());
     }
@@ -957,14 +964,14 @@ class SpecificationBuilderTest {
         assertThrows(
                 NullPointerException.class,
                 () -> SpecificationBuilder.from(GuitarPedal.class)
-                        .isBetween(null, 0L, 9L)
+                        .where().isBetween(null, 0L, 9L)
         );
     }
 
     @Test
     void isIn_collection_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.from(GuitarPedal.class)
-                .isIn(GuitarPedal_.id, List.of(1L, 2L, 3L));
+                .where().isIn(GuitarPedal_.id, List.of(1L, 2L, 3L));
         assertNotNull(builder);
         assertNotNull(builder.toSpecification());
     }
@@ -972,7 +979,7 @@ class SpecificationBuilderTest {
     @Test
     void isIn_collection_returnsBuilderWithSpecification_evenWhenValueIsNull() {
         var builder = SpecificationBuilder.from(GuitarPedal.class)
-                .isIn(GuitarPedal_.id, (Collection<?>) null);
+                .where().isIn(GuitarPedal_.id, (Collection<?>) null);
         assertNotNull(builder);
         assertNotNull(builder.toSpecification());
     }
@@ -982,14 +989,14 @@ class SpecificationBuilderTest {
         assertThrows(
                 NullPointerException.class,
                 () -> SpecificationBuilder.from(GuitarPedal.class)
-                        .isIn(null, List.of(1L, 2L, 3L))
+                        .where().isIn(null, List.of(1L, 2L, 3L))
         );
     }
 
     @Test
     void isIn_array_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.from(GuitarPedal.class)
-                .isIn(GuitarPedal_.id, 1L, 2L, 3L);
+                .where().isIn(GuitarPedal_.id, 1L, 2L, 3L);
         assertNotNull(builder);
         assertNotNull(builder.toSpecification());
     }
@@ -997,7 +1004,7 @@ class SpecificationBuilderTest {
     @Test
     void isIn_array_returnsBuilderWithSpecification_evenWhenValueIsNull() {
         var builder = SpecificationBuilder.from(GuitarPedal.class)
-                .isIn(GuitarPedal_.id, (Object) null);
+                .where().isIn(GuitarPedal_.id, (Object) null);
         assertNotNull(builder);
         assertNotNull(builder.toSpecification());
     }
@@ -1007,14 +1014,14 @@ class SpecificationBuilderTest {
         assertThrows(
                 NullPointerException.class,
                 () -> SpecificationBuilder.from(GuitarPedal.class)
-                        .isIn(null, 1L, 2L, 3L)
+                        .where().isIn(null, 1L, 2L, 3L)
         );
     }
 
     @Test
     void fetch_singular_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.from(GuitarPedal.class)
-                .fetch(GuitarPedal_.manufacturer);
+                .with().fetchOf(GuitarPedal_.manufacturer);
         assertNotNull(builder);
         assertNotNull(builder.toSpecification());
     }
@@ -1024,14 +1031,14 @@ class SpecificationBuilderTest {
         assertThrows(
                 NullPointerException.class,
                 () -> SpecificationBuilder.from(GuitarPedal.class)
-                        .fetch((SingularAttribute<GuitarPedal, Object>) null)
+                        .with().fetchOf((SingularAttribute<GuitarPedal, Object>) null)
         );
     }
 
     @Test
     void fetch_list_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.from(GuitarPedal.class)
-                .fetch(GuitarPedal_.tags);
+                .with().fetchOf(GuitarPedal_.tags);
         assertNotNull(builder);
         assertNotNull(builder.toSpecification());
     }
@@ -1041,7 +1048,7 @@ class SpecificationBuilderTest {
         assertThrows(
                 NullPointerException.class,
                 () -> SpecificationBuilder.from(GuitarPedal.class)
-                        .fetch((ListAttribute<GuitarPedal, Object>) null)
+                        .with().fetchOf((ListAttribute<GuitarPedal, Object>) null)
         );
     }
 }
