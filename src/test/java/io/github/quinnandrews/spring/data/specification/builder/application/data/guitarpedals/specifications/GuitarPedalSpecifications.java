@@ -5,12 +5,14 @@ import io.github.quinnandrews.spring.data.specification.builder.application.data
 import jakarta.persistence.criteria.Join;
 import io.github.quinnandrews.spring.data.specification.annotations.Specifications;
 import io.github.quinnandrews.spring.data.specification.builder.SpecificationBuilder;
-import io.github.quinnandrews.spring.data.specification.builder.SpecificationFactory;
 import io.github.quinnandrews.spring.data.specification.builder.SpecificationUtil;
 import io.github.quinnandrews.spring.data.specification.builder.application.data.guitarpedals.*;
 import org.springframework.data.jpa.domain.Specification;
 
 import java.util.Collection;
+
+import static io.github.quinnandrews.spring.data.specification.builder.SpecificationBuilder.from;
+import static io.github.quinnandrews.spring.data.specification.builder.SpecificationFactory.*;
 
 /**
  * <p> Examples using the Builder and Factory classes, including comparisons
@@ -26,8 +28,6 @@ import java.util.Collection;
  */
 @Specifications
 public class GuitarPedalSpecifications {
-
-    private final SpecificationFactory specificationFactory = new SpecificationFactory();
 
     public GuitarPedalSpecifications() {
         // no-op
@@ -188,11 +188,11 @@ public class GuitarPedalSpecifications {
     }
 
     public Specification<GuitarPedal> hasNotBeenSold_usingFactory() {
-        return specificationFactory.isNull(GuitarPedal_.dateSold);
+        return isNull(GuitarPedal_.dateSold);
     }
 
     public Specification<GuitarPedal> usedValueGreaterThan_usingFactory(final Integer usedValueGreaterThan) {
-        return specificationFactory.greaterThan(GuitarPedal_.usedValue, usedValueGreaterThan);
+        return isGreaterThan(GuitarPedal_.usedValue, usedValueGreaterThan);
     }
 
     /*
@@ -211,8 +211,8 @@ public class GuitarPedalSpecifications {
     The next example, Search Example #6, shows what I mean.
      */
     public Specification<GuitarPedal> search_example_05(final Integer usedValueGreaterThan) {
-        return  Specification.where(specificationFactory.isNull(GuitarPedal_.dateSold))
-                .and(specificationFactory.greaterThan(GuitarPedal_.usedValue, usedValueGreaterThan));
+        return  Specification.where(isNull(GuitarPedal_.dateSold))
+                .and(isGreaterThan(GuitarPedal_.usedValue, usedValueGreaterThan));
     }
 
     /*
@@ -237,8 +237,8 @@ public class GuitarPedalSpecifications {
     }
      */
     public Specification<GuitarPedal> search_example_06(final Integer usedValueGreaterThan) {
-        return specificationFactory.isNull(GuitarPedal_.dateSold)
-                .and(specificationFactory.greaterThan(GuitarPedal_.usedValue, usedValueGreaterThan));
+        return isNull(GuitarPedal_.dateSold)
+                .and(isGreaterThan(GuitarPedal_.usedValue, usedValueGreaterThan));
     }
 
     /*
@@ -346,7 +346,7 @@ public class GuitarPedalSpecifications {
     The next example, Fetch Example #2, begins looking at how to do that.
      */
     public Specification<GuitarPedal> fetch_example_01() {
-        return SpecificationBuilder.from(GuitarPedal.class)
+        return from(GuitarPedal.class)
                 .fetch(GuitarPedal_.manufacturer)
                 .toSpecification();
     }
@@ -407,7 +407,7 @@ public class GuitarPedalSpecifications {
     associated Collections of Entities.
      */
     public Specification<GuitarPedal> fetch_example_02(final String name) {
-        return SpecificationBuilder.from(GuitarPedal.class)
+        return from(GuitarPedal.class)
                 .fetch(GuitarPedal_.manufacturer)
                 .where(
                         (root, query, builder) -> {
@@ -442,7 +442,7 @@ public class GuitarPedalSpecifications {
     In the next example, Fetch Example #4, we'll clean this up a bit.
      */
     public Specification<GuitarPedal> fetch_example_03(final Collection<String> tags) {
-        return SpecificationBuilder.from(GuitarPedal.class)
+        return from(GuitarPedal.class)
                 .fetch(GuitarPedal_.manufacturer)
                 .fetch(GuitarPedal_.tags)
                 .where(
@@ -474,7 +474,7 @@ public class GuitarPedalSpecifications {
     Let's look at the next example, Fetch Example #5, and see what NOT to do.
      */
     public Specification<GuitarPedal> fetch_example_04(final Collection<String> tags) {
-        return SpecificationBuilder.from(GuitarPedal.class)
+        return from(GuitarPedal.class)
                 .fetch(GuitarPedal_.manufacturer)
                 .fetch(GuitarPedal_.tags)
                 .where(tagsContain(tags))
@@ -488,7 +488,7 @@ public class GuitarPedalSpecifications {
                 return join.get(GuitarPedalTag_.tag).in(tags);
             };
         }
-        return specificationFactory.ghost();
+        return ghost();
     }
 
     /*
@@ -514,7 +514,7 @@ public class GuitarPedalSpecifications {
      */
     public Specification<GuitarPedal> fetch_example_05(final Long id,
                                                        final Collection<String> tags) {
-        return SpecificationBuilder.from(GuitarPedal.class)
+        return from(GuitarPedal.class)
                 .fetch(GuitarPedal_.manufacturer)
                 .fetch(GuitarPedal_.tags)
                 .where(
@@ -561,7 +561,7 @@ public class GuitarPedalSpecifications {
      */
     public Specification<GuitarPedal> fetch_example_06(final Long id,
                                                        final Collection<String> tags) {
-        return SpecificationBuilder.from(GuitarPedal.class)
+        return from(GuitarPedal.class)
                 .fetch(GuitarPedal_.manufacturer)
                 .fetch(GuitarPedal_.tags)
                 .where(
@@ -654,7 +654,7 @@ public class GuitarPedalSpecifications {
     @SuppressWarnings("unchecked")
     public Specification<GuitarPedal> fetch_example_07(final Long id,
                                                        final Collection<String> tags) {
-        return SpecificationBuilder.from(GuitarPedal.class)
+        return from(GuitarPedal.class)
                 .fetch(GuitarPedal_.manufacturer)
                 .where(
                         (root, query, builder) -> {
