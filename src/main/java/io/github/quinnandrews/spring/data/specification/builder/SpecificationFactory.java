@@ -21,11 +21,11 @@ public class SpecificationFactory {
 
     private static final String ATTRIBUTE_CANNOT_BE_NULL = "Argument 'attribute' cannot be null.";
 
-    public SpecificationFactory() {
+    private SpecificationFactory() {
         // no-op
     }
 
-    public <T> Specification<T> equal(final SingularAttribute<T, ?> attribute,
+    public static <T> Specification<T> isEqualTo(final SingularAttribute<T, ?> attribute,
                                       final Object value) {
         Objects.requireNonNull(attribute, ATTRIBUTE_CANNOT_BE_NULL);
         if (noneAreNull(value)) {
@@ -34,7 +34,7 @@ public class SpecificationFactory {
         return ghost();
     }
 
-    public <T> Specification<T> notEqual(final SingularAttribute<T, ?> attribute,
+    public static <T> Specification<T> isNotEqualTo(final SingularAttribute<T, ?> attribute,
                                          final Object value) {
         Objects.requireNonNull(attribute, ATTRIBUTE_CANNOT_BE_NULL);
         if (noneAreNull(value)) {
@@ -43,8 +43,8 @@ public class SpecificationFactory {
         return ghost();
     }
 
-    public <T> Specification<T> like(final SingularAttribute<T, String> attribute,
-                                     final String value) {
+    public static <T> Specification<T> isLike(final SingularAttribute<T, String> attribute,
+                                              final String value) {
         Objects.requireNonNull(attribute, ATTRIBUTE_CANNOT_BE_NULL);
         final Object trimmedValue = stripToNull(value);
         if (noneAreNull(trimmedValue)) {
@@ -56,8 +56,8 @@ public class SpecificationFactory {
         return ghost();
     }
 
-    public <T> Specification<T> notLike(final SingularAttribute<T, String> attribute,
-                                        final String value) {
+    public static <T> Specification<T> isNotLike(final SingularAttribute<T, String> attribute,
+                                                 final String value) {
         Objects.requireNonNull(attribute, ATTRIBUTE_CANNOT_BE_NULL);
         final Object trimmedValue = stripToNull(value);
         if (noneAreNull(trimmedValue)) {
@@ -69,34 +69,34 @@ public class SpecificationFactory {
         return ghost();
     }
 
-    public <T> Specification<T> equalOrLike(final SingularAttribute<T, String> attribute,
-                                            final String value) {
+    public static <T> Specification<T> isEqualToOrLike(final SingularAttribute<T, String> attribute,
+                                                      final String value) {
         Objects.requireNonNull(attribute, ATTRIBUTE_CANNOT_BE_NULL);
-        return isWildcardExpression(value) ? like(attribute, value) : equal(attribute, value);
+        return isWildcardExpression(value) ? isLike(attribute, value) : isEqualTo(attribute, value);
     }
 
-    public <T> Specification<T> isNull(final SingularAttribute<T, ?> attribute) {
+    public static <T> Specification<T> isNull(final SingularAttribute<T, ?> attribute) {
         Objects.requireNonNull(attribute, ATTRIBUTE_CANNOT_BE_NULL);
         return (root, query, builder) -> builder.isNull(root.get(attribute));
     }
 
-    public <T> Specification<T> isNotNull(final SingularAttribute<T, ?> attribute) {
+    public static <T> Specification<T> isNotNull(final SingularAttribute<T, ?> attribute) {
         Objects.requireNonNull(attribute, ATTRIBUTE_CANNOT_BE_NULL);
         return (root, query, builder) -> builder.isNotNull(root.get(attribute));
     }
 
-    public <T> Specification<T> isTrue(final SingularAttribute<T, Boolean> attribute) {
+    public static <T> Specification<T> isTrue(final SingularAttribute<T, Boolean> attribute) {
         Objects.requireNonNull(attribute, ATTRIBUTE_CANNOT_BE_NULL);
         return (root, query, builder) -> builder.isTrue(root.get(attribute).as(Boolean.class));
     }
 
-    public <T> Specification<T> isFalse(final SingularAttribute<T, Boolean> attribute) {
+    public static <T> Specification<T> isFalse(final SingularAttribute<T, Boolean> attribute) {
         Objects.requireNonNull(attribute, ATTRIBUTE_CANNOT_BE_NULL);
         return (root, query, builder) -> builder.isFalse(root.get(attribute).as(Boolean.class));
     }
 
-    public  <T, V extends Comparable<? super V>> Specification<T> greaterThan(final SingularAttribute<T, V> attribute,
-                                                                              final V value) {
+    public static <T, V extends Comparable<? super V>> Specification<T> isGreaterThan(final SingularAttribute<T, V> attribute,
+                                                                                      final V value) {
         Objects.requireNonNull(attribute, ATTRIBUTE_CANNOT_BE_NULL);
         if (noneAreNull(value)) {
             return (root, query, builder) -> builder.greaterThan(root.get(attribute), value);
@@ -104,8 +104,8 @@ public class SpecificationFactory {
         return ghost();
     }
 
-    public <T, V extends Comparable<? super V>> Specification<T> greaterThanOrEqualTo(final SingularAttribute<T, V> attribute,
-                                                                                      final V value) {
+    public static <T, V extends Comparable<? super V>> Specification<T> isGreaterThanOrEqualTo(final SingularAttribute<T, V> attribute,
+                                                                                               final V value) {
         Objects.requireNonNull(attribute, ATTRIBUTE_CANNOT_BE_NULL);
         if (noneAreNull(value)) {
             return (root, query, builder) -> builder.greaterThanOrEqualTo(root.get(attribute), value);
@@ -113,8 +113,8 @@ public class SpecificationFactory {
         return ghost();
     }
 
-    public <T, V extends Comparable<? super V>> Specification<T> lessThan(final SingularAttribute<T, V> attribute,
-                                                                          final V value) {
+    public static <T, V extends Comparable<? super V>> Specification<T> isLessThan(final SingularAttribute<T, V> attribute,
+                                                                                   final V value) {
         Objects.requireNonNull(attribute, ATTRIBUTE_CANNOT_BE_NULL);
         if (noneAreNull(value)) {
             return (root, query, builder) -> builder.lessThan(root.get(attribute), value);
@@ -122,8 +122,8 @@ public class SpecificationFactory {
         return ghost();
     }
 
-    public <T, V extends Comparable<? super V>> Specification<T> lessThanOrEqualTo(final SingularAttribute<T, V> attribute,
-                                                                                   final V value) {
+    public static <T, V extends Comparable<? super V>> Specification<T> isLessThanOrEqualTo(final SingularAttribute<T, V> attribute,
+                                                                                            final V value) {
         Objects.requireNonNull(attribute, ATTRIBUTE_CANNOT_BE_NULL);
         if (noneAreNull(value)) {
             return (root, query, builder) -> builder.lessThanOrEqualTo(root.get(attribute), value);
@@ -131,9 +131,9 @@ public class SpecificationFactory {
         return ghost();
     }
 
-    public <T, V extends Comparable<? super V>> Specification<T> between(final SingularAttribute<T, V> attribute,
-                                                                         final V firstValue,
-                                                                         final V secondValue) {
+    public static <T, V extends Comparable<? super V>> Specification<T> isBetween(final SingularAttribute<T, V> attribute,
+                                                                                  final V firstValue,
+                                                                                  final V secondValue) {
         Objects.requireNonNull(attribute, ATTRIBUTE_CANNOT_BE_NULL);
         if (noneAreNull(firstValue, secondValue)) {
             return (root, query, builder) -> builder.between(root.get(attribute), firstValue, secondValue);
@@ -141,8 +141,8 @@ public class SpecificationFactory {
         return ghost();
     }
 
-    public <T> Specification<T> in(final SingularAttribute<T, ?> attribute,
-                                   final Collection<?> collection) {
+    public static <T> Specification<T> isIn(final SingularAttribute<T, ?> attribute,
+                                            final Collection<?> collection) {
         Objects.requireNonNull(attribute, ATTRIBUTE_CANNOT_BE_NULL);
         if (noneAreNull(collection) && !collection.isEmpty()) {
             return (root, query, builder) -> root.get(attribute).in(collection);
@@ -150,15 +150,15 @@ public class SpecificationFactory {
         return ghost();
     }
 
-    public <T> Specification<T> in(final SingularAttribute<T, ?> attribute,
-                                   final Object... values) {
+    public static <T> Specification<T> isIn(final SingularAttribute<T, ?> attribute,
+                                            final Object... values) {
         Objects.requireNonNull(attribute, ATTRIBUTE_CANNOT_BE_NULL);
-        return in(attribute, Arrays.stream(values)
+        return isIn(attribute, Arrays.stream(values)
                 .filter(SpecificationUtil::noneAreNull)
                 .collect(Collectors.toSet()));
     }
 
-    public <T> Specification<T> fetch(final SingularAttribute<T, ?> attribute) {
+    public static <T> Specification<T> fetch(final SingularAttribute<T, ?> attribute) {
         Objects.requireNonNull(attribute, ATTRIBUTE_CANNOT_BE_NULL);
         if (noneAreNull(attribute)) {
             return (root, query, builder) -> {
@@ -169,7 +169,7 @@ public class SpecificationFactory {
         return ghost();
     }
 
-    public <T> Specification<T> fetch(final PluralAttribute<T, ?, ?> attribute) {
+    public static <T> Specification<T> fetch(final PluralAttribute<T, ?, ?> attribute) {
         Objects.requireNonNull(attribute, ATTRIBUTE_CANNOT_BE_NULL);
         if (noneAreNull(attribute)) {
             return (root, query, builder) -> {
@@ -180,7 +180,7 @@ public class SpecificationFactory {
         return ghost();
     }
 
-    public <T> Specification<T> ghost() {
+    public static <T> Specification<T> ghost() {
         return (root, query, builder) -> null;
     }
 }

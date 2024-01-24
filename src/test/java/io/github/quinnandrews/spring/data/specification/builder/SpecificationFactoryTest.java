@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import io.github.quinnandrews.spring.data.specification.builder.application.Application;
 import io.github.quinnandrews.spring.data.specification.builder.application.data.guitarpedals.GuitarPedal;
 import io.github.quinnandrews.spring.data.specification.builder.application.data.guitarpedals.GuitarPedal_;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.jpa.domain.Specification;
@@ -19,13 +20,12 @@ import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
 
+import static io.github.quinnandrews.spring.data.specification.builder.SpecificationFactory.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest(classes = Application.class)
 class SpecificationFactoryTest {
-
-    private final SpecificationFactory specificationFactory = new SpecificationFactory();
 
     @Autowired
     private EntityManager entityManager;
@@ -42,129 +42,135 @@ class SpecificationFactoryTest {
     }
 
     @Test
-    void equal_returnsNonNullPredicate_whenValueIsNotNull() {
-        var specification = specificationFactory.equal(GuitarPedal_.id, 0L);
+    void isEqualTo_returnsNonNullPredicate_whenValueIsNotNull() {
+        var specification = isEqualTo(GuitarPedal_.id, 0L);
         assertNotNull(specification);
         assertNotNull(specification.toPredicate(root, query, builder));
     }
 
     @Test
-    void equal_returnsNullPredicate_whenValueIsNull() {
-        var specification = specificationFactory.equal(GuitarPedal_.id, null);
+    void isEqualTo_returnsNullPredicate_whenValueIsNull() {
+        var specification = isEqualTo(GuitarPedal_.id, null);
         assertNotNull(specification);
         assertNull(specification.toPredicate(root, query, builder));
     }
 
     @Test
-    void equal_throwsException_whenAttributeIsNull() {
+    void isEqualTo_throwsException_whenAttributeIsNull() {
         assertThrows(
                 NullPointerException.class,
-                () -> specificationFactory.equal(null, 0L));
+                () -> isEqualTo(null, 0L));
     }
 
     @Test
-    void notEqual_returnsNonNullPredicate_whenValueIsNotNull() {
-        var specification = specificationFactory.notEqual(GuitarPedal_.id, 0L);
+    void isNotEqual_returnsNonNullPredicate_whenValueIsNotNull() {
+        var specification = isNotEqualTo(GuitarPedal_.id, 0L);
         assertNotNull(specification);
         assertNotNull(specification.toPredicate(root, query, builder));
     }
 
     @Test
-    void notEqual_returnsNullPredicate_whenValueIsNull() {
-        var specification = specificationFactory.notEqual(GuitarPedal_.id, null);
+    void isNotEqual_returnsNullPredicate_whenValueIsNull() {
+        var specification = isNotEqualTo(GuitarPedal_.id, null);
         assertNotNull(specification);
         assertNull(specification.toPredicate(root, query, builder));
     }
 
     @Test
-    void notEqual_throwsException_whenAttributeIsNull() {
+    void isNotEqual_throwsException_whenAttributeIsNull() {
         assertThrows(
                 NullPointerException.class,
-                () -> specificationFactory.notEqual(null, 0L));
+                () -> isNotEqualTo(null, 0L));
     }
 
     @Test
-    void like_returnsNonNullPredicate_whenValueIsNotNull() {
-        var specification = specificationFactory.like(GuitarPedal_.name, "%test%");
+    void isLike_returnsNonNullPredicate_whenValueIsNotNull() {
+        var specification = isLike(GuitarPedal_.name, "%test%");
         assertNotNull(specification);
         assertNotNull(specification.toPredicate(root, query, builder));
     }
 
     @Test
-    void like_returnsNullPredicate_whenValueIsNull() {
-        var specification = specificationFactory.like(GuitarPedal_.name, null);
+    void isLike_returnsNullPredicate_whenValueIsNull() {
+        var specification = isLike(GuitarPedal_.name, null);
         assertNotNull(specification);
         assertNull(specification.toPredicate(root, query, builder));
     }
 
     @Test
-    void like_throwsException_whenAttributeIsNull() {
+    void isLike_throwsException_whenAttributeIsNull() {
         assertThrows(
                 NullPointerException.class,
-                () -> specificationFactory.like(null, "%test%"));
+                () -> isLike(null, "%test%"));
     }
 
     @Test
-    void notLike_returnsNonNullPredicate_whenValueIsNotNull() {
-        var specification = specificationFactory.notLike(GuitarPedal_.name, "%test%");
+    void isNotLike_returnsNonNullPredicate_whenValueIsNotNull() {
+        var specification = isNotLike(GuitarPedal_.name, "%test%");
         assertNotNull(specification);
         assertNotNull(specification.toPredicate(root, query, builder));
     }
 
     @Test
-    void notLike_returnsNullPredicate_whenValueIsNull() {
-        var specification = specificationFactory.notLike(GuitarPedal_.name, null);
+    void isNotLike_returnsNullPredicate_whenValueIsNull() {
+        var specification = isNotLike(GuitarPedal_.name, null);
         assertNotNull(specification);
         assertNull(specification.toPredicate(root, query, builder));
     }
 
     @Test
-    void notLike_throwsException_whenAttributeIsNull() {
+    void isNotLike_throwsException_whenAttributeIsNull() {
         assertThrows(
                 NullPointerException.class,
-                () -> specificationFactory.notLike(null, "%test%"));
+                () -> isNotLike(null, "%test%"));
     }
 
     @Test
-    void equalOrLike_returnsNonNullPredicate_whenValueIsNotNull() {
-        var specification = specificationFactory.equalOrLike(GuitarPedal_.name, "%test%");
+    void isEqualToOrLike_returnsNonNullPredicate_whenValueIsNotNull() {
+        var specification = isEqualToOrLike(GuitarPedal_.name, "%test%");
         assertNotNull(specification);
         assertNotNull(specification.toPredicate(root, query, builder));
     }
 
     @Test
-    void equalOrLike_returnsNullPredicate_whenValueIsNull() {
-        var specification = specificationFactory.equalOrLike(GuitarPedal_.name, null);
+    void isEqualToOrLike_returnsNullPredicate_whenValueIsNull() {
+        var specification = isEqualToOrLike(GuitarPedal_.name, null);
         assertNotNull(specification);
         assertNull(specification.toPredicate(root, query, builder));
     }
 
     @Test
-    void equalOrLike_callsEqual_whenValueContainsNoWildcards() {
-        var specificationFactory = spy(this.specificationFactory);
-        specificationFactory.equalOrLike(GuitarPedal_.name, "test");
-        verify(specificationFactory, times(1)).equal(GuitarPedal_.name, "test");
-        verify(specificationFactory, times(0)).like(GuitarPedal_.name, "test");
+    void isEqualToOrLike_callsIsEqualTo_whenValueContainsNoWildcards() {
+        try (var mockedStatic = mockStatic(
+                SpecificationFactory.class,
+                Mockito.withSettings().defaultAnswer(Mockito.CALLS_REAL_METHODS))) {
+            isEqualToOrLike(GuitarPedal_.name, "test");
+            mockedStatic.verify(() -> SpecificationFactory.isEqualTo(GuitarPedal_.name,"test"), times(1));
+            mockedStatic.verify(() -> SpecificationFactory.isLike(GuitarPedal_.name,"test"), times(0));
+        }
     }
 
     @Test
-    void equalOrLike_callsLike_whenValueContainsWildcards() {
-        var specificationFactory = spy(this.specificationFactory);
-        specificationFactory.equalOrLike(GuitarPedal_.name, "%test%");
-        verify(specificationFactory, times(0)).equal(GuitarPedal_.name, "%test%");
-        verify(specificationFactory, times(1)).like(GuitarPedal_.name, "%test%");
+    void isEqualToOrLike_callsIsLike_whenValueContainsWildcards() {
+        try (var mockedStatic = mockStatic(
+                SpecificationFactory.class,
+                Mockito.withSettings().defaultAnswer(Mockito.CALLS_REAL_METHODS))) {
+            isEqualToOrLike(GuitarPedal_.name, "%test%");
+            mockedStatic.verify(() -> SpecificationFactory.isEqualTo(GuitarPedal_.name,"%test%"), times(0));
+            mockedStatic.verify(() -> SpecificationFactory.isLike(GuitarPedal_.name,"%test%"), times(1));
+        }
     }
 
     @Test
-    void equalOrLike_throwsException_whenAttributeIsNull() {
+    void isEqualToOrLike_throwsException_whenAttributeIsNull() {
         assertThrows(
                 NullPointerException.class,
-                () -> specificationFactory.equalOrLike(null, "%test%"));
+                () -> isEqualToOrLike(null, "%test%"));
     }
 
     @Test
     void isTrue_returnsNonNullPredicate() {
-        var specification = specificationFactory.isTrue(GuitarPedal_.hasStereoOutput);
+        var specification = isTrue(GuitarPedal_.hasStereoOutput);
         assertNotNull(specification);
         assertNotNull(specification.toPredicate(root, query, builder));
     }
@@ -173,12 +179,12 @@ class SpecificationFactoryTest {
     void isTrue_throwsException_whenAttributeIsNull() {
         assertThrows(
                 NullPointerException.class,
-                () -> specificationFactory.isTrue(null));
+                () -> isTrue(null));
     }
 
     @Test
     void isFalse_returnsNonNullPredicate() {
-        var specification = specificationFactory.isFalse(GuitarPedal_.hasStereoOutput);
+        var specification = isFalse(GuitarPedal_.hasStereoOutput);
         assertNotNull(specification);
         assertNotNull(specification.toPredicate(root, query, builder));
     }
@@ -187,12 +193,12 @@ class SpecificationFactoryTest {
     void isFalse_throwsException_whenAttributeIsNull() {
         assertThrows(
                 NullPointerException.class,
-                () -> specificationFactory.isFalse(null));
+                () -> isFalse(null));
     }
 
     @Test
     void isNull_returnsNonNullPredicate() {
-        var specification = specificationFactory.isNull(GuitarPedal_.dateSold);
+        var specification = isNull(GuitarPedal_.dateSold);
         assertNotNull(specification);
         assertNotNull(specification.toPredicate(root, query, builder));
     }
@@ -201,12 +207,12 @@ class SpecificationFactoryTest {
     void isNull_throwsException_whenAttributeIsNull() {
         assertThrows(
                 NullPointerException.class,
-                () -> specificationFactory.isNull(null));
+                () -> SpecificationFactory.isNull(null));
     }
 
     @Test
     void isNotNull_returnsNonNullPredicate() {
-        var specification = specificationFactory.isNotNull(GuitarPedal_.dateSold);
+        var specification = isNotNull(GuitarPedal_.dateSold);
         assertNotNull(specification);
         assertNotNull(specification.toPredicate(root, query, builder));
     }
@@ -215,96 +221,96 @@ class SpecificationFactoryTest {
     void isNotNull_throwsException_whenAttributeIsNull() {
         assertThrows(
                 NullPointerException.class,
-                () -> specificationFactory.isNotNull(null));
+                () -> SpecificationFactory.isNotNull(null));
     }
 
     @Test
-    void greaterThan_returnsNonNullPredicate_whenValueIsNotNull() {
-        var specification = specificationFactory.greaterThan(GuitarPedal_.usedValue, 0);
+    void isGreaterThan_returnsNonNullPredicate_whenValueIsNotNull() {
+        var specification = isGreaterThan(GuitarPedal_.usedValue, 0);
         assertNotNull(specification);
         assertNotNull(specification.toPredicate(root, query, builder));
     }
 
     @Test
-    void greaterThan_returnsNullPredicate_whenValueIsNull() {
-        var specification = specificationFactory.greaterThan(GuitarPedal_.usedValue, null);
+    void isGreaterThan_returnsNullPredicate_whenValueIsNull() {
+        var specification = isGreaterThan(GuitarPedal_.usedValue, null);
         assertNotNull(specification);
         assertNull(specification.toPredicate(root, query, builder));
     }
 
     @Test
-    void greaterThan_throwsException_whenAttributeIsNull() {
+    void isGreaterThan_throwsException_whenAttributeIsNull() {
         assertThrows(
                 NullPointerException.class,
-                () -> specificationFactory.greaterThan(null, 0));
+                () -> isGreaterThan(null, 0));
     }
 
     @Test
-    void greaterThanOrEqualTo_returnsNonNullPredicate_whenValueIsNotNull() {
-        var specification = specificationFactory.greaterThanOrEqualTo(GuitarPedal_.usedValue, 0);
+    void isGreaterThanOrEqualTo_returnsNonNullPredicate_whenValueIsNotNull() {
+        var specification = isGreaterThanOrEqualTo(GuitarPedal_.usedValue, 0);
         assertNotNull(specification);
         assertNotNull(specification.toPredicate(root, query, builder));
     }
 
     @Test
-    void greaterThanOrEqualTo_returnsNullPredicate_whenValueIsNull() {
-        var specification = specificationFactory.greaterThanOrEqualTo(GuitarPedal_.usedValue, null);
+    void isGreaterThanOrEqualTo_returnsNullPredicate_whenValueIsNull() {
+        var specification = isGreaterThanOrEqualTo(GuitarPedal_.usedValue, null);
         assertNotNull(specification);
         assertNull(specification.toPredicate(root, query, builder));
     }
 
     @Test
-    void greaterThanOrEqualTo_throwsException_whenAttributeIsNull() {
+    void isGreaterThanOrEqualTo_throwsException_whenAttributeIsNull() {
         assertThrows(
                 NullPointerException.class,
-                () -> specificationFactory.greaterThanOrEqualTo(null, 0));
+                () -> isGreaterThanOrEqualTo(null, 0));
     }
 
     @Test
-    void lessThan_returnsNonNullPredicate_whenValueIsNotNull() {
-        var specification = specificationFactory.lessThan(GuitarPedal_.usedValue, 0);
+    void isLessThan_returnsNonNullPredicate_whenValueIsNotNull() {
+        var specification = isLessThan(GuitarPedal_.usedValue, 0);
         assertNotNull(specification);
         assertNotNull(specification.toPredicate(root, query, builder));
     }
 
     @Test
-    void lessThan_returnsNullPredicate_whenValueIsNull() {
-        var specification = specificationFactory.lessThan(GuitarPedal_.usedValue, null);
+    void isLessThan_returnsNullPredicate_whenValueIsNull() {
+        var specification = isLessThan(GuitarPedal_.usedValue, null);
         assertNotNull(specification);
         assertNull(specification.toPredicate(root, query, builder));
     }
 
     @Test
-    void lessThan_throwsException_whenAttributeIsNull() {
+    void isLessThan_throwsException_whenAttributeIsNull() {
         assertThrows(
                 NullPointerException.class,
-                () -> specificationFactory.lessThan(null, 0));
+                () -> isLessThan(null, 0));
     }
 
     @Test
-    void lessThanOrEqualTo_returnsNonNullPredicate_whenValueIsNotNull() {
-        var specification = specificationFactory.lessThanOrEqualTo(GuitarPedal_.usedValue, 0);
+    void isLessThanOrEqualTo_returnsNonNullPredicate_whenValueIsNotNull() {
+        var specification = isLessThanOrEqualTo(GuitarPedal_.usedValue, 0);
         assertNotNull(specification);
         assertNotNull(specification.toPredicate(root, query, builder));
     }
 
     @Test
-    void lessThanOrEqualTo_returnsNullPredicate_whenValueIsNull() {
-        var specification = specificationFactory.lessThanOrEqualTo(GuitarPedal_.usedValue, null);
+    void isLessThanOrEqualTo_returnsNullPredicate_whenValueIsNull() {
+        var specification = isLessThanOrEqualTo(GuitarPedal_.usedValue, null);
         assertNotNull(specification);
         assertNull(specification.toPredicate(root, query, builder));
     }
 
     @Test
-    void lessThanOrEqualTo_throwsException_whenAttributeIsNull() {
+    void isLessThanOrEqualTo_throwsException_whenAttributeIsNull() {
         assertThrows(
                 NullPointerException.class,
-                () -> specificationFactory.lessThanOrEqualTo(null, 0));
+                () -> isLessThanOrEqualTo(null, 0));
     }
 
     @Test
-    void between_returnsNonNullPredicate_whenValueIsNotNull() {
-        var specification = specificationFactory.between(
+    void isBetween_returnsNonNullPredicate_whenValueIsNotNull() {
+        var specification = isBetween(
                 GuitarPedal_.datePurchased,
                 LocalDate.now(), 
                 LocalDate.now().plusDays(7)
@@ -314,72 +320,72 @@ class SpecificationFactoryTest {
     }
 
     @Test
-    void between_returnsNullPredicate_whenEitherValueIsNull() {
-        var specification = specificationFactory.between(GuitarPedal_.usedValue, null, null);
+    void isBetween_returnsNullPredicate_whenEitherValueIsNull() {
+        var specification = isBetween(GuitarPedal_.usedValue, null, null);
         assertNotNull(specification);
         assertNull(specification.toPredicate(root, query, builder));
 
-        specification = specificationFactory.between(GuitarPedal_.usedValue, 0, null);
+        specification = isBetween(GuitarPedal_.usedValue, 0, null);
         assertNotNull(specification);
         assertNull(specification.toPredicate(root, query, builder));
 
-        specification = specificationFactory.between(GuitarPedal_.usedValue, null, 9);
+        specification = isBetween(GuitarPedal_.usedValue, null, 9);
         assertNotNull(specification);
         assertNull(specification.toPredicate(root, query, builder));
     }
 
     @Test
-    void between_throwsException_whenAttributeIsNull() {
+    void isBetween_throwsException_whenAttributeIsNull() {
         assertThrows(
                 NullPointerException.class,
-                () -> specificationFactory.between(null, 0L, 9L));
+                () -> isBetween(null, 0L, 9L));
     }
 
     @Test
-    void in_collection_returnsNonNullPredicate_whenValueIsNotNull() {
-        var specification = specificationFactory.in(GuitarPedal_.id, List.of(1L, 2L, 3L));
+    void isIn_collection_returnsNonNullPredicate_whenValueIsNotNull() {
+        var specification = isIn(GuitarPedal_.id, List.of(1L, 2L, 3L));
         assertNotNull(specification);
         assertNotNull(specification.toPredicate(root, query, builder));
     }
 
     @Test
-    void in_collection_returnsNullPredicate_whenValueIsNull() {
-        var specification = specificationFactory.in(GuitarPedal_.id, (Collection<?>) null);
+    void isIn_collection_returnsNullPredicate_whenValueIsNull() {
+        var specification = isIn(GuitarPedal_.id, (Collection<?>) null);
         assertNotNull(specification);
         assertNull(specification.toPredicate(root, query, builder));
     }
 
     @Test
-    void in_collection_throwsException_whenAttributeIsNull() {
+    void isIn_collection_throwsException_whenAttributeIsNull() {
         assertThrows(
                 NullPointerException.class,
-                () -> specificationFactory.in(null, List.of(1L, 2L, 3L)));
+                () -> isIn(null, List.of(1L, 2L, 3L)));
     }
 
     @Test
-    void in_array_returnsNonNullPredicate_whenValueIsNotNull() {
-        var specification = specificationFactory.in(GuitarPedal_.id, 1L, 2L, 3L);
+    void isIn_array_returnsNonNullPredicate_whenValueIsNotNull() {
+        var specification = isIn(GuitarPedal_.id, 1L, 2L, 3L);
         assertNotNull(specification);
         assertNotNull(specification.toPredicate(root, query, builder));
     }
 
     @Test
-    void in_array_returnsNullPredicate_whenValueIsNull() {
-        var specification = specificationFactory.in(GuitarPedal_.id, (Object) null);
+    void isIn_array_returnsNullPredicate_whenValueIsNull() {
+        var specification = isIn(GuitarPedal_.id, (Object) null);
         assertNotNull(specification);
         assertNull(specification.toPredicate(root, query, builder));
     }
 
     @Test
-    void in_array_throwsException_whenAttributeIsNull() {
+    void isIn_array_throwsException_whenAttributeIsNull() {
         assertThrows(
                 NullPointerException.class,
-                () -> specificationFactory.in(null, 1L, 2L, 3L));
+                () -> isIn(null, 1L, 2L, 3L));
     }
 
     @Test
     void fetch_singular_returnsNonNullPredicate() {
-        var specification = specificationFactory.fetch(GuitarPedal_.manufacturer);
+        var specification = fetch(GuitarPedal_.manufacturer);
         assertNotNull(specification);
         assertNotNull(specification.toPredicate(root, query, builder));
     }
@@ -388,12 +394,12 @@ class SpecificationFactoryTest {
     void fetch_singular_throwsException_whenAttributeIsNull() {
         assertThrows(
                 NullPointerException.class,
-                () -> specificationFactory.fetch((SingularAttribute<GuitarPedal, Object>) null));
+                () -> fetch((SingularAttribute<GuitarPedal, Object>) null));
     }
 
     @Test
     void fetch_list_returnsNonNullPredicate() {
-        var specification = specificationFactory.fetch(GuitarPedal_.tags);
+        var specification = fetch(GuitarPedal_.tags);
         assertNotNull(specification);
         assertNotNull(specification.toPredicate(root, query, builder));
     }
@@ -402,12 +408,12 @@ class SpecificationFactoryTest {
     void fetch_list_throwsException_whenAttributeIsNull() {
         assertThrows(
                 NullPointerException.class,
-                () -> specificationFactory.fetch((ListAttribute<GuitarPedal, Object>) null));
+                () -> fetch((ListAttribute<GuitarPedal, Object>) null));
     }
 
     @Test
     void ghost_returnsNullPredicate() {
-        Specification<GuitarPedal> specification = specificationFactory.ghost();
+        Specification<GuitarPedal> specification = ghost();
         assertNotNull(specification);
         assertNull(specification.toPredicate(root, query, builder));
     }

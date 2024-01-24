@@ -15,8 +15,6 @@ import java.util.Objects;
  * @author Quinn Andrews
  */
 public class SpecificationBuilder<T> {
-
-    private final SpecificationFactory specificationFactory = new SpecificationFactory();
     
     private Specification<T> specification;
 
@@ -77,188 +75,188 @@ public class SpecificationBuilder<T> {
     @Deprecated
     public SpecificationBuilder<T> whereEquals(final SingularAttribute<T, ?> attribute,
                                                final Object value) {
-        return where(specificationFactory.equal(attribute, value));
+        return where(SpecificationFactory.isEqualTo(attribute, value));
     }
 
     @Deprecated
     public SpecificationBuilder<T> whereNotEquals(final SingularAttribute<T, ?> attribute,
                                                   final Object value) {
-        return where(specificationFactory.notEqual(attribute, value));
+        return where(SpecificationFactory.isNotEqualTo(attribute, value));
     }
 
     @Deprecated
     public SpecificationBuilder<T> whereLike(final SingularAttribute<T, String> attribute,
                                              final String value) {
-        return where(specificationFactory.like(attribute, value));
+        return where(SpecificationFactory.isLike(attribute, value));
     }
 
     @Deprecated
     public SpecificationBuilder<T> whereNotLike(final SingularAttribute<T, String> attribute,
                                                 final String value) {
-        return where(specificationFactory.notLike(attribute, value));
+        return where(SpecificationFactory.isNotLike(attribute, value));
     }
 
     @Deprecated
     public SpecificationBuilder<T> whereEqualsOrLike(final SingularAttribute<T, String> attribute,
                                                      final String value) {
-        return where(specificationFactory.equalOrLike(attribute, value));
+        return where(SpecificationFactory.isEqualToOrLike(attribute, value));
     }
 
     @Deprecated
     public SpecificationBuilder<T> whereIsNull(final SingularAttribute<T, ?> attribute) {
-        return where(specificationFactory.isNull(attribute));
+        return where(SpecificationFactory.isNull(attribute));
     }
 
     @Deprecated
     public SpecificationBuilder<T> whereIsNotNull(final SingularAttribute<T, ?> attribute) {
-        return where(specificationFactory.isNotNull(attribute));
+        return where(SpecificationFactory.isNotNull(attribute));
     }
 
     @Deprecated
     public SpecificationBuilder<T> whereIsTrue(final SingularAttribute<T, Boolean> attribute) {
-        return where(specificationFactory.isTrue(attribute));
+        return where(SpecificationFactory.isTrue(attribute));
     }
 
     @Deprecated
     public SpecificationBuilder<T> whereIsFalse(final SingularAttribute<T, Boolean> attribute) {
-        return where(specificationFactory.isFalse(attribute));
+        return where(SpecificationFactory.isFalse(attribute));
     }
 
     @Deprecated
     public <V extends Comparable<? super V>> SpecificationBuilder<T> whereGreaterThan(final SingularAttribute<T, V> attribute,
                                                                                       final V value) {
-        return where(specificationFactory.greaterThan(attribute, value));
+        return where(SpecificationFactory.isGreaterThan(attribute, value));
     }
 
     @Deprecated
     public <V extends Comparable<? super V>>  SpecificationBuilder<T> whereGreaterThanOrEqualTo(final SingularAttribute<T, V> attribute,
                                                                                                 final V value) {
-        return where(specificationFactory.greaterThanOrEqualTo(attribute, value));
+        return where(SpecificationFactory.isGreaterThanOrEqualTo(attribute, value));
     }
 
     @Deprecated
     public <V extends Comparable<? super V>> SpecificationBuilder<T> whereLessThan(final SingularAttribute<T, V> attribute,
                                                                                    final V value) {
-        return where(specificationFactory.lessThan(attribute, value));
+        return where(SpecificationFactory.isLessThan(attribute, value));
     }
 
     @Deprecated
     public <V extends Comparable<? super V>> SpecificationBuilder<T> whereLessThanOrEqualTo(final SingularAttribute<T, V> attribute,
                                                                                             final V value) {
-        return where(specificationFactory.lessThanOrEqualTo(attribute, value));
+        return where(SpecificationFactory.isLessThanOrEqualTo(attribute, value));
     }
 
     @Deprecated
     public <V extends Comparable<? super V>> SpecificationBuilder<T> whereBetween(final SingularAttribute<T, V> attribute,
                                                                                   final V firstValue,
                                                                                   final V secondValue) {
-        return where(specificationFactory.between(attribute, firstValue, secondValue));
+        return where(SpecificationFactory.isBetween(attribute, firstValue, secondValue));
     }
 
     @Deprecated
     public SpecificationBuilder<T> whereIn(final SingularAttribute<T, ?> attribute,
                                            final Collection<?> collection) {
-        return where(specificationFactory.in(attribute, collection));
+        return where(SpecificationFactory.isIn(attribute, collection));
     }
 
     @Deprecated
     public SpecificationBuilder<T> whereIn(final SingularAttribute<T, ?> attribute,
                                            final Object... values) {
-        return where(specificationFactory.in(attribute, values));
+        return where(SpecificationFactory.isIn(attribute, values));
     }
 
     @Deprecated
     public SpecificationBuilder<T> withFetch(final SingularAttribute<T, ?> attribute) {
-        return and(specificationFactory.fetch(attribute));
+        return and(SpecificationFactory.fetch(attribute));
     }
 
     @Deprecated
     public SpecificationBuilder<T> withFetch(final PluralAttribute<T, ?, ?> attribute) {
-        return and(specificationFactory.fetch(attribute));
+        return and(SpecificationFactory.fetch(attribute));
     }
 
     public SpecificationBuilder<T> isEqualTo(final SingularAttribute<T, ?> attribute,
                                              final Object value) {
-        return where(specificationFactory.equal(attribute, value));
+        return where(SpecificationFactory.isEqualTo(attribute, value));
     }
 
     public SpecificationBuilder<T> isNotEqualTo(final SingularAttribute<T, ?> attribute,
                                                 final Object value) {
-        return where(specificationFactory.notEqual(attribute, value));
+        return where(SpecificationFactory.isNotEqualTo(attribute, value));
     }
 
     public SpecificationBuilder<T> isLike(final SingularAttribute<T, String> attribute,
                                           final String value) {
-        return where(specificationFactory.like(attribute, value));
+        return where(SpecificationFactory.isLike(attribute, value));
     }
 
     public SpecificationBuilder<T> isNotLike(final SingularAttribute<T, String> attribute,
                                              final String value) {
-        return where(specificationFactory.notLike(attribute, value));
+        return where(SpecificationFactory.isNotLike(attribute, value));
     }
 
     public SpecificationBuilder<T> isEqualToOrLike(final SingularAttribute<T, String> attribute,
                                                    final String value) {
-        return where(specificationFactory.equalOrLike(attribute, value));
+        return where(SpecificationFactory.isEqualToOrLike(attribute, value));
     }
 
     public SpecificationBuilder<T> isNull(final SingularAttribute<T, ?> attribute) {
-        return where(specificationFactory.isNull(attribute));
+        return where(SpecificationFactory.isNull(attribute));
     }
 
     public SpecificationBuilder<T> isNotNull(final SingularAttribute<T, ?> attribute) {
-        return where(specificationFactory.isNotNull(attribute));
+        return where(SpecificationFactory.isNotNull(attribute));
     }
 
     public SpecificationBuilder<T> isTrue(final SingularAttribute<T, Boolean> attribute) {
-        return where(specificationFactory.isTrue(attribute));
+        return where(SpecificationFactory.isTrue(attribute));
     }
 
     public SpecificationBuilder<T> isFalse(final SingularAttribute<T, Boolean> attribute) {
-        return where(specificationFactory.isFalse(attribute));
+        return where(SpecificationFactory.isFalse(attribute));
     }
 
     public <V extends Comparable<? super V>> SpecificationBuilder<T> isGreaterThan(final SingularAttribute<T, V> attribute,
                                                                                    final V value) {
-        return where(specificationFactory.greaterThan(attribute, value));
+        return where(SpecificationFactory.isGreaterThan(attribute, value));
     }
 
     public <V extends Comparable<? super V>>  SpecificationBuilder<T> isGreaterThanOrEqualTo(final SingularAttribute<T, V> attribute,
                                                                                              final V value) {
-        return where(specificationFactory.greaterThanOrEqualTo(attribute, value));
+        return where(SpecificationFactory.isGreaterThanOrEqualTo(attribute, value));
     }
 
     public <V extends Comparable<? super V>> SpecificationBuilder<T> isLessThan(final SingularAttribute<T, V> attribute,
                                                                                 final V value) {
-        return where(specificationFactory.lessThan(attribute, value));
+        return where(SpecificationFactory.isLessThan(attribute, value));
     }
 
     public <V extends Comparable<? super V>> SpecificationBuilder<T> isLessThanOrEqualTo(final SingularAttribute<T, V> attribute,
                                                                                          final V value) {
-        return where(specificationFactory.lessThanOrEqualTo(attribute, value));
+        return where(SpecificationFactory.isLessThanOrEqualTo(attribute, value));
     }
 
     public <V extends Comparable<? super V>> SpecificationBuilder<T> isBetween(final SingularAttribute<T, V> attribute,
                                                                                final V firstValue,
                                                                                final V secondValue) {
-        return where(specificationFactory.between(attribute, firstValue, secondValue));
+        return where(SpecificationFactory.isBetween(attribute, firstValue, secondValue));
     }
 
     public SpecificationBuilder<T> isIn(final SingularAttribute<T, ?> attribute,
                                         final Collection<?> collection) {
-        return where(specificationFactory.in(attribute, collection));
+        return where(SpecificationFactory.isIn(attribute, collection));
     }
 
     public SpecificationBuilder<T> isIn(final SingularAttribute<T, ?> attribute,
                                         final Object... values) {
-        return where(specificationFactory.in(attribute, values));
+        return where(SpecificationFactory.isIn(attribute, values));
     }
 
     public SpecificationBuilder<T> fetch(final SingularAttribute<T, ?> attribute) {
-        return and(specificationFactory.fetch(attribute));
+        return and(SpecificationFactory.fetch(attribute));
     }
 
     public SpecificationBuilder<T> fetch(final PluralAttribute<T, ?, ?> attribute) {
-        return and(specificationFactory.fetch(attribute));
+        return and(SpecificationFactory.fetch(attribute));
     }
 }

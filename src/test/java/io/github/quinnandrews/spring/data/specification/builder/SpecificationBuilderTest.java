@@ -72,7 +72,7 @@ class SpecificationBuilderTest {
     @Test
     void where_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.from(GuitarPedal.class)
-                .where(new SpecificationFactory().ghost());
+                .where(SpecificationFactory.ghost());
         assertNotNull(builder);
         assertNotNull(builder.toSpecification());
     }
@@ -96,7 +96,7 @@ class SpecificationBuilderTest {
     @Test
     void and_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.from(GuitarPedal.class)
-                .and(new SpecificationFactory().ghost());
+                .and(SpecificationFactory.ghost());
         assertNotNull(builder);
         assertNotNull(builder.toSpecification());
     }
@@ -113,7 +113,7 @@ class SpecificationBuilderTest {
     @Test
     void or_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.from(GuitarPedal.class)
-                .or(new SpecificationFactory().ghost());
+                .or(SpecificationFactory.ghost());
         assertNotNull(builder);
         assertNotNull(builder.toSpecification());
     }
@@ -131,7 +131,7 @@ class SpecificationBuilderTest {
     @Deprecated
     void andWhere_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
-                .andWhere(new SpecificationFactory().ghost());
+                .andWhere(SpecificationFactory.ghost());
         assertNotNull(builder);
         assertNotNull(builder.toSpecification());
     }
@@ -150,7 +150,7 @@ class SpecificationBuilderTest {
     @Deprecated
     void orWhere_returnsBuilderWithSpecification() {
         var builder = SpecificationBuilder.withRoot(GuitarPedal.class)
-                .orWhere(new SpecificationFactory().ghost());
+                .orWhere(SpecificationFactory.ghost());
         assertNotNull(builder);
         assertNotNull(builder.toSpecification());
     }
