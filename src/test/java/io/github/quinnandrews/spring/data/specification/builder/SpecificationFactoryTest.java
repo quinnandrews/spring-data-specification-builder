@@ -385,7 +385,7 @@ class SpecificationFactoryTest {
 
     @Test
     void fetch_singular_returnsNonNullPredicate() {
-        var specification = fetch(GuitarPedal_.manufacturer);
+        var specification = fetchOf(GuitarPedal_.manufacturer);
         assertNotNull(specification);
         assertNotNull(specification.toPredicate(root, query, builder));
     }
@@ -394,12 +394,12 @@ class SpecificationFactoryTest {
     void fetch_singular_throwsException_whenAttributeIsNull() {
         assertThrows(
                 NullPointerException.class,
-                () -> fetch((SingularAttribute<GuitarPedal, Object>) null));
+                () -> fetchOf((SingularAttribute<GuitarPedal, Object>) null));
     }
 
     @Test
     void fetch_list_returnsNonNullPredicate() {
-        var specification = fetch(GuitarPedal_.tags);
+        var specification = fetchOf(GuitarPedal_.tags);
         assertNotNull(specification);
         assertNotNull(specification.toPredicate(root, query, builder));
     }
@@ -408,7 +408,7 @@ class SpecificationFactoryTest {
     void fetch_list_throwsException_whenAttributeIsNull() {
         assertThrows(
                 NullPointerException.class,
-                () -> fetch((ListAttribute<GuitarPedal, Object>) null));
+                () -> fetchOf((ListAttribute<GuitarPedal, Object>) null));
     }
 
     @Test

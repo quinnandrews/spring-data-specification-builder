@@ -158,7 +158,7 @@ public class SpecificationFactory {
                 .collect(Collectors.toSet()));
     }
 
-    public static <T> Specification<T> fetch(final SingularAttribute<T, ?> attribute) {
+    public static <T> Specification<T> fetchOf(final SingularAttribute<T, ?> attribute) {
         Objects.requireNonNull(attribute, ATTRIBUTE_CANNOT_BE_NULL);
         if (noneAreNull(attribute)) {
             return (root, query, builder) -> {
@@ -169,7 +169,7 @@ public class SpecificationFactory {
         return ghost();
     }
 
-    public static <T> Specification<T> fetch(final PluralAttribute<T, ?, ?> attribute) {
+    public static <T> Specification<T> fetchOf(final PluralAttribute<T, ?, ?> attribute) {
         Objects.requireNonNull(attribute, ATTRIBUTE_CANNOT_BE_NULL);
         if (noneAreNull(attribute)) {
             return (root, query, builder) -> {

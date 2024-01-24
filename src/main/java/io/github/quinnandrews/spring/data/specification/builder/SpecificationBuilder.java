@@ -62,6 +62,10 @@ public class SpecificationBuilder<T> {
         return this;
     }
 
+    public SpecificationBuilder<T> with() {
+        return this;
+    }
+
     @Deprecated
     public SpecificationBuilder<T> andWhere(final Specification<T> specification) {
         return where(specification);
@@ -167,12 +171,12 @@ public class SpecificationBuilder<T> {
 
     @Deprecated
     public SpecificationBuilder<T> withFetch(final SingularAttribute<T, ?> attribute) {
-        return and(SpecificationFactory.fetch(attribute));
+        return and(SpecificationFactory.fetchOf(attribute));
     }
 
     @Deprecated
     public SpecificationBuilder<T> withFetch(final PluralAttribute<T, ?, ?> attribute) {
-        return and(SpecificationFactory.fetch(attribute));
+        return and(SpecificationFactory.fetchOf(attribute));
     }
 
     public SpecificationBuilder<T> isEqualTo(final SingularAttribute<T, ?> attribute,
@@ -252,11 +256,11 @@ public class SpecificationBuilder<T> {
         return where(SpecificationFactory.isIn(attribute, values));
     }
 
-    public SpecificationBuilder<T> fetch(final SingularAttribute<T, ?> attribute) {
-        return and(SpecificationFactory.fetch(attribute));
+    public SpecificationBuilder<T> fetchOf(final SingularAttribute<T, ?> attribute) {
+        return and(SpecificationFactory.fetchOf(attribute));
     }
 
-    public SpecificationBuilder<T> fetch(final PluralAttribute<T, ?, ?> attribute) {
-        return and(SpecificationFactory.fetch(attribute));
+    public SpecificationBuilder<T> fetchOf(final PluralAttribute<T, ?, ?> attribute) {
+        return and(SpecificationFactory.fetchOf(attribute));
     }
 }

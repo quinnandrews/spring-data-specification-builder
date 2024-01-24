@@ -317,7 +317,7 @@ public class SpecificationBuilderIntegrationTest {
     void isEqualTo() {
         var optionalPedal = guitarPedalRepository.findOne(
                 SpecificationBuilder.from(GuitarPedal.class)
-                        .isEqualTo(GuitarPedal_.id, 3L)
+                        .where().isEqualTo(GuitarPedal_.id, 3L)
                         .toSpecification());
         assertTrue(optionalPedal.isPresent());
         assertEquals(3L, optionalPedal.get().getId());
@@ -328,7 +328,7 @@ public class SpecificationBuilderIntegrationTest {
     void isNotEqualTo() {
         var pedals = guitarPedalRepository.findAll(
                 SpecificationBuilder.from(GuitarPedal.class)
-                        .isNotEqualTo(GuitarPedal_.id, 3L)
+                        .where().isNotEqualTo(GuitarPedal_.id, 3L)
                         .toSpecification());
         assertEquals(3, pedals.size());
         assertTrue(pedals.stream()
@@ -341,7 +341,7 @@ public class SpecificationBuilderIntegrationTest {
     void isLike() {
         var pedals = guitarPedalRepository.findAll(
                 SpecificationBuilder.from(GuitarPedal.class)
-                        .isLike(GuitarPedal_.name, "%and%")
+                        .where().isLike(GuitarPedal_.name, "%and%")
                         .toSpecification(), Sort.by("name"));
         assertEquals(2, pedals.size());
         assertEquals("Deco: Tape Saturation and Double Tracker", pedals.get(0).getName());
@@ -352,7 +352,7 @@ public class SpecificationBuilderIntegrationTest {
     void isNotLike() {
         var pedals = guitarPedalRepository.findAll(
                 SpecificationBuilder.from(GuitarPedal.class)
-                        .isNotLike(GuitarPedal_.name, "%and%")
+                        .where().isNotLike(GuitarPedal_.name, "%and%")
                         .toSpecification(), Sort.by("name"));
         assertEquals(2, pedals.size());
         assertEquals("Big Muff Fuzz", pedals.get(0).getName());
@@ -362,7 +362,7 @@ public class SpecificationBuilderIntegrationTest {
     @Test
     void isEqualToOrLike() {
         var pedals = guitarPedalRepository.findAll(SpecificationBuilder.from(GuitarPedal.class)
-                .isEqualToOrLike(GuitarPedal_.name, "Deco%")
+                .where().isEqualToOrLike(GuitarPedal_.name, "Deco%")
                 .toSpecification(), Sort.by("name"));
         assertEquals(1, pedals.size());
         assertEquals("Deco: Tape Saturation and Double Tracker", pedals.get(0).getName());
@@ -372,7 +372,7 @@ public class SpecificationBuilderIntegrationTest {
     void isNull() {
         var pedals = guitarPedalRepository.findAll(
                 SpecificationBuilder.from(GuitarPedal.class)
-                        .isNull(GuitarPedal_.dateSold)
+                        .where().isNull(GuitarPedal_.dateSold)
                         .toSpecification(), Sort.by("name"));
         assertEquals(3, pedals.size());
         assertEquals("Big Muff Fuzz", pedals.get(0).getName());
@@ -387,7 +387,7 @@ public class SpecificationBuilderIntegrationTest {
     void isNotNull() {
         var pedals = guitarPedalRepository.findAll(
                 SpecificationBuilder.from(GuitarPedal.class)
-                        .isNotNull(GuitarPedal_.dateSold)
+                        .where().isNotNull(GuitarPedal_.dateSold)
                         .toSpecification(), Sort.by("name"));
         assertEquals(1, pedals.size());
         assertEquals("Sneak Attack: Attack/Decay and Tremolo", pedals.get(0).getName());
@@ -398,7 +398,7 @@ public class SpecificationBuilderIntegrationTest {
     void isTrue() {
         var pedals = guitarPedalRepository.findAll(
                 SpecificationBuilder.from(GuitarPedal.class)
-                        .isTrue(GuitarPedal_.hasStereoOutput)
+                        .where().isTrue(GuitarPedal_.hasStereoOutput)
                         .toSpecification(), Sort.by("name"));
         assertEquals(1, pedals.size());
         assertEquals("Deco: Tape Saturation and Double Tracker", pedals.get(0).getName());
@@ -410,7 +410,7 @@ public class SpecificationBuilderIntegrationTest {
     void isFalse() {
         var pedals = guitarPedalRepository.findAll(
                 SpecificationBuilder.from(GuitarPedal.class)
-                        .isFalse(GuitarPedal_.hasStereoOutput)
+                        .where().isFalse(GuitarPedal_.hasStereoOutput)
                         .toSpecification(), Sort.by("name"));
         assertEquals(3, pedals.size());
         assertEquals("Big Muff Fuzz", pedals.get(0).getName());
@@ -425,7 +425,7 @@ public class SpecificationBuilderIntegrationTest {
     void isGreaterThan() {
         var pedals = guitarPedalRepository.findAll(
                 SpecificationBuilder.from(GuitarPedal.class)
-                        .isGreaterThan(GuitarPedal_.usedValue, 200)
+                        .where().isGreaterThan(GuitarPedal_.usedValue, 200)
                         .toSpecification(), Sort.by("name"));
         assertEquals(1, pedals.size());
         assertEquals("Deco: Tape Saturation and Double Tracker", pedals.get(0).getName());
@@ -436,7 +436,7 @@ public class SpecificationBuilderIntegrationTest {
     void isGreaterThanOrEqualTo() {
         var pedals = guitarPedalRepository.findAll(
                 SpecificationBuilder.from(GuitarPedal.class)
-                        .isGreaterThanOrEqualTo(GuitarPedal_.usedValue, 200)
+                        .where().isGreaterThanOrEqualTo(GuitarPedal_.usedValue, 200)
                         .toSpecification(), Sort.by("name"));
         assertEquals(2, pedals.size());
         assertEquals("Deco: Tape Saturation and Double Tracker", pedals.get(0).getName());
@@ -449,7 +449,7 @@ public class SpecificationBuilderIntegrationTest {
     void isLessThan() {
         var pedals = guitarPedalRepository.findAll(
                 SpecificationBuilder.from(GuitarPedal.class)
-                        .isLessThan(GuitarPedal_.usedValue, 150)
+                        .where().isLessThan(GuitarPedal_.usedValue, 150)
                         .toSpecification(), Sort.by("name"));
         assertEquals(1, pedals.size());
         assertEquals("Big Muff Fuzz", pedals.get(0).getName());
@@ -460,7 +460,7 @@ public class SpecificationBuilderIntegrationTest {
     void isLessThanOrEqualTo() {
         var pedals = guitarPedalRepository.findAll(
                 SpecificationBuilder.from(GuitarPedal.class)
-                        .isLessThanOrEqualTo(GuitarPedal_.usedValue, 150)
+                        .where().isLessThanOrEqualTo(GuitarPedal_.usedValue, 150)
                         .toSpecification(), Sort.by("name"));
         assertEquals(2, pedals.size());
         assertEquals("Big Muff Fuzz", pedals.get(0).getName());
@@ -473,7 +473,7 @@ public class SpecificationBuilderIntegrationTest {
     void isBetween() {
         var pedals = guitarPedalRepository.findAll(
                 SpecificationBuilder.from(GuitarPedal.class)
-                        .isBetween(
+                        .where().isBetween(
                                 GuitarPedal_.datePurchased,
                                 LocalDate.of(2021, 7, 19),
                                 LocalDate.of(2022, 9, 11))
@@ -489,7 +489,7 @@ public class SpecificationBuilderIntegrationTest {
     void isIn_collection() {
         var pedals = guitarPedalRepository.findAll(
                 SpecificationBuilder.from(GuitarPedal.class)
-                        .isIn(GuitarPedal_.id, List.of(2L, 3L))
+                        .where().isIn(GuitarPedal_.id, List.of(2L, 3L))
                         .toSpecification(), Sort.by("name"));
         assertEquals(2, pedals.size());
         assertEquals(2L, pedals.get(0).getId());
@@ -502,7 +502,7 @@ public class SpecificationBuilderIntegrationTest {
     void isIn_array() {
         var pedals = guitarPedalRepository.findAll(
                 SpecificationBuilder.from(GuitarPedal.class)
-                        .isIn(GuitarPedal_.id, 2L, 3L)
+                        .where().isIn(GuitarPedal_.id, 2L, 3L)
                         .toSpecification(), Sort.by("name"));
         assertEquals(2, pedals.size());
         assertEquals(2L, pedals.get(0).getId());

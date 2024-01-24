@@ -270,7 +270,7 @@ public class GuitarPedalSpecifications {
     }
 
     /*
-    This example, Fetch Example #1, introduces the fetch() methods provided by the
+    This example, Fetch Example #1, introduces the fetchOf() methods provided by the
     SpecificationBuilder to eagerly fetch associated Entities in an optimized way.
 
     If search_example_07() is executed with a value of 75 passed in as its argument, 2 GuitarPedals
@@ -314,7 +314,7 @@ public class GuitarPedalSpecifications {
     and we can make that happen by utilizing what the underlying JPA Criteria API provides and
     encapsulating it in the SpecificationBuilder and SpecificationFactory.
 
-    All we need to do is call fetch() on the SpecificationBuilder (or fetch() on the
+    All we need to do is call fetchOf() on the SpecificationBuilder (or fetchOf() on the
     SpecificationFactory) with the attribute representing the association we want to eagerly fetch.
 
     In this example, Fetch Example #1, we define a fetch of Manufacturer and the SQL is then rendered
@@ -347,12 +347,12 @@ public class GuitarPedalSpecifications {
      */
     public Specification<GuitarPedal> fetch_example_01() {
         return from(GuitarPedal.class)
-                .fetch(GuitarPedal_.manufacturer)
+                .with().fetchOf(GuitarPedal_.manufacturer)
                 .toSpecification();
     }
 
     /*
-    This example, Fetch Example #2, uses the fetch() method provided by the
+    This example, Fetch Example #2, uses the fetchOf() method provided by the
     SpecificationBuilder to eagerly fetch an associated Entity, but it also uses
     the where() method to filter by one of the associated Entity's properties.
 
@@ -370,8 +370,8 @@ public class GuitarPedalSpecifications {
     and it will have no effect on the rendered SQL query. Otherwise, a Criteria Predicate
     is built and returned.
 
-    NOTE: Calling fetch() is not required to do the filtering. They are independent
-    operations. We call fetch() simply to limit the number of queries.
+    NOTE: Calling fetchOf() is not required to do the filtering. They are independent
+    operations. We call fetchOf() simply to limit the number of queries.
 
     The SQL renders as:
 
@@ -408,7 +408,7 @@ public class GuitarPedalSpecifications {
      */
     public Specification<GuitarPedal> fetch_example_02(final String name) {
         return from(GuitarPedal.class)
-                .fetch(GuitarPedal_.manufacturer)
+                .with().fetchOf(GuitarPedal_.manufacturer)
                 .where(
                         (root, query, builder) -> {
                             if (SpecificationUtil.noneAreNull(name)) {
@@ -422,7 +422,7 @@ public class GuitarPedalSpecifications {
     }
 
     /*
-    This example, Fetch Example #3, uses the fetch() method provided by the
+    This example, Fetch Example #3, uses the fetchOf() method provided by the
     SpecificationBuilder twice, one to eagerly fetch an associated Entity and
     another to eagerly fetch an associated Collection of Entities. It also uses
     the where() method to filter by a property belonging to Entity of the
@@ -443,8 +443,8 @@ public class GuitarPedalSpecifications {
      */
     public Specification<GuitarPedal> fetch_example_03(final Collection<String> tags) {
         return from(GuitarPedal.class)
-                .fetch(GuitarPedal_.manufacturer)
-                .fetch(GuitarPedal_.tags)
+                .with().fetchOf(GuitarPedal_.manufacturer)
+                .and().fetchOf(GuitarPedal_.tags)
                 .where(
                         (root, query, builder) -> {
                             if (SpecificationUtil.noneAreNull(tags)) {
@@ -475,8 +475,8 @@ public class GuitarPedalSpecifications {
      */
     public Specification<GuitarPedal> fetch_example_04(final Collection<String> tags) {
         return from(GuitarPedal.class)
-                .fetch(GuitarPedal_.manufacturer)
-                .fetch(GuitarPedal_.tags)
+                .with().fetchOf(GuitarPedal_.manufacturer)
+                .and().fetchOf(GuitarPedal_.tags)
                 .where(tagsContain(tags))
                 .toSpecification();
     }
@@ -515,8 +515,8 @@ public class GuitarPedalSpecifications {
     public Specification<GuitarPedal> fetch_example_05(final Long id,
                                                        final Collection<String> tags) {
         return from(GuitarPedal.class)
-                .fetch(GuitarPedal_.manufacturer)
-                .fetch(GuitarPedal_.tags)
+                .with().fetchOf(GuitarPedal_.manufacturer)
+                .and().fetchOf(GuitarPedal_.tags)
                 .where(
                         (root, query, builder) -> {
                             if (SpecificationUtil.noneAreNull(id)) {
@@ -562,8 +562,8 @@ public class GuitarPedalSpecifications {
     public Specification<GuitarPedal> fetch_example_06(final Long id,
                                                        final Collection<String> tags) {
         return from(GuitarPedal.class)
-                .fetch(GuitarPedal_.manufacturer)
-                .fetch(GuitarPedal_.tags)
+                .with().fetchOf(GuitarPedal_.manufacturer)
+                .and().fetchOf(GuitarPedal_.tags)
                 .where(
                         (root, query, builder) -> {
                             if (SpecificationUtil.noneAreNull(id)
@@ -594,11 +594,11 @@ public class GuitarPedalSpecifications {
     same Join instance for both the eager fetch and the Specifications that filter by
     the associated Collection.
 
-    Unlike Example #6, in this example we create a join by calling root.fetch() rather
-    than calling root.join(). The fetch() method doesn't return a Join, but the Object
+    Unlike Example #6, in this example we create a join by calling root.fetchOf() rather
+    than calling root.join(). The fetchOf() method doesn't return a Join, but the Object
     is castable to a Join, which is unfortunately recognized as an unchecked cast.
 
-    Since we're using fetch() to render a join for both the eager fetching and the
+    Since we're using fetchOf() to render a join for both the eager fetching and the
     filtering, there is no need to for an additional null check like there was in
     Example #6.
 
@@ -634,7 +634,7 @@ public class GuitarPedalSpecifications {
     an Entity rather than a Collection of Entities. But for an associated Collection,
     it doesn't give us what we would typically want.
 
-    When we use fetch() to eagerly fetch an associated Collections, most of the time we
+    When we use fetchOf() to eagerly fetch an associated Collections, most of the time we
     will want the whole Collection returned, since we recognize that it is best practice
     when working with an Aggregate, but this query fails to provide the whole Collection.
 
@@ -655,7 +655,7 @@ public class GuitarPedalSpecifications {
     public Specification<GuitarPedal> fetch_example_07(final Long id,
                                                        final Collection<String> tags) {
         return from(GuitarPedal.class)
-                .fetch(GuitarPedal_.manufacturer)
+                .with().fetchOf(GuitarPedal_.manufacturer)
                 .where(
                         (root, query, builder) -> {
                             final var join = (Join<GuitarPedal, GuitarPedalTag>) root.fetch(GuitarPedal_.tags);
