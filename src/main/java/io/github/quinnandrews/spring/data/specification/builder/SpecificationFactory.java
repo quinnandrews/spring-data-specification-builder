@@ -160,24 +160,18 @@ public class SpecificationFactory {
 
     public static <T> Specification<T> fetchOf(final SingularAttribute<T, ?> attribute) {
         Objects.requireNonNull(attribute, ATTRIBUTE_CANNOT_BE_NULL);
-        if (noneAreNull(attribute)) {
-            return (root, query, builder) -> {
-                root.fetch(attribute, JoinType.INNER);
-                return builder.conjunction();
-            };
-        }
-        return ghost();
+        return (root, query, builder) -> {
+            root.fetch(attribute, JoinType.INNER);
+            return builder.conjunction();
+        };
     }
 
     public static <T> Specification<T> fetchOf(final PluralAttribute<T, ?, ?> attribute) {
         Objects.requireNonNull(attribute, ATTRIBUTE_CANNOT_BE_NULL);
-        if (noneAreNull(attribute)) {
-            return (root, query, builder) -> {
-                root.fetch(attribute, JoinType.INNER);
-                return builder.conjunction();
-            };
-        }
-        return ghost();
+        return (root, query, builder) -> {
+            root.fetch(attribute, JoinType.INNER);
+            return builder.conjunction();
+        };
     }
 
     public static <T> Specification<T> ghost() {
