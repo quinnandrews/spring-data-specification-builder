@@ -22,11 +22,6 @@ public class SpecificationBuilder<T> {
         // no-op
     }
 
-    @Deprecated
-    public static <T> SpecificationBuilder<T> withRoot(final Class<T> root) {
-        return from(root);
-    }
-
     public static <T> SpecificationBuilder<T> from(final Class<T> root) {
         Objects.requireNonNull(root, "Argument 'root' cannot be null.");
         return new SpecificationBuilder<>();
@@ -64,119 +59,6 @@ public class SpecificationBuilder<T> {
 
     public SpecificationBuilder<T> with() {
         return this;
-    }
-
-    @Deprecated
-    public SpecificationBuilder<T> andWhere(final Specification<T> specification) {
-        return where(specification);
-    }
-
-    @Deprecated
-    public SpecificationBuilder<T> orWhere(final Specification<T> specification) {
-        return or(specification);
-    }
-
-    @Deprecated
-    public SpecificationBuilder<T> whereEquals(final SingularAttribute<T, ?> attribute,
-                                               final Object value) {
-        return where(SpecificationFactory.isEqualTo(attribute, value));
-    }
-
-    @Deprecated
-    public SpecificationBuilder<T> whereNotEquals(final SingularAttribute<T, ?> attribute,
-                                                  final Object value) {
-        return where(SpecificationFactory.isNotEqualTo(attribute, value));
-    }
-
-    @Deprecated
-    public SpecificationBuilder<T> whereLike(final SingularAttribute<T, String> attribute,
-                                             final String value) {
-        return where(SpecificationFactory.isLike(attribute, value));
-    }
-
-    @Deprecated
-    public SpecificationBuilder<T> whereNotLike(final SingularAttribute<T, String> attribute,
-                                                final String value) {
-        return where(SpecificationFactory.isNotLike(attribute, value));
-    }
-
-    @Deprecated
-    public SpecificationBuilder<T> whereEqualsOrLike(final SingularAttribute<T, String> attribute,
-                                                     final String value) {
-        return where(SpecificationFactory.isEqualToOrLike(attribute, value));
-    }
-
-    @Deprecated
-    public SpecificationBuilder<T> whereIsNull(final SingularAttribute<T, ?> attribute) {
-        return where(SpecificationFactory.isNull(attribute));
-    }
-
-    @Deprecated
-    public SpecificationBuilder<T> whereIsNotNull(final SingularAttribute<T, ?> attribute) {
-        return where(SpecificationFactory.isNotNull(attribute));
-    }
-
-    @Deprecated
-    public SpecificationBuilder<T> whereIsTrue(final SingularAttribute<T, Boolean> attribute) {
-        return where(SpecificationFactory.isTrue(attribute));
-    }
-
-    @Deprecated
-    public SpecificationBuilder<T> whereIsFalse(final SingularAttribute<T, Boolean> attribute) {
-        return where(SpecificationFactory.isFalse(attribute));
-    }
-
-    @Deprecated
-    public <V extends Comparable<? super V>> SpecificationBuilder<T> whereGreaterThan(final SingularAttribute<T, V> attribute,
-                                                                                      final V value) {
-        return where(SpecificationFactory.isGreaterThan(attribute, value));
-    }
-
-    @Deprecated
-    public <V extends Comparable<? super V>>  SpecificationBuilder<T> whereGreaterThanOrEqualTo(final SingularAttribute<T, V> attribute,
-                                                                                                final V value) {
-        return where(SpecificationFactory.isGreaterThanOrEqualTo(attribute, value));
-    }
-
-    @Deprecated
-    public <V extends Comparable<? super V>> SpecificationBuilder<T> whereLessThan(final SingularAttribute<T, V> attribute,
-                                                                                   final V value) {
-        return where(SpecificationFactory.isLessThan(attribute, value));
-    }
-
-    @Deprecated
-    public <V extends Comparable<? super V>> SpecificationBuilder<T> whereLessThanOrEqualTo(final SingularAttribute<T, V> attribute,
-                                                                                            final V value) {
-        return where(SpecificationFactory.isLessThanOrEqualTo(attribute, value));
-    }
-
-    @Deprecated
-    public <V extends Comparable<? super V>> SpecificationBuilder<T> whereBetween(final SingularAttribute<T, V> attribute,
-                                                                                  final V firstValue,
-                                                                                  final V secondValue) {
-        return where(SpecificationFactory.isBetween(attribute, firstValue, secondValue));
-    }
-
-    @Deprecated
-    public SpecificationBuilder<T> whereIn(final SingularAttribute<T, ?> attribute,
-                                           final Collection<?> collection) {
-        return where(SpecificationFactory.isIn(attribute, collection));
-    }
-
-    @Deprecated
-    public SpecificationBuilder<T> whereIn(final SingularAttribute<T, ?> attribute,
-                                           final Object... values) {
-        return where(SpecificationFactory.isIn(attribute, values));
-    }
-
-    @Deprecated
-    public SpecificationBuilder<T> withFetch(final SingularAttribute<T, ?> attribute) {
-        return and(SpecificationFactory.fetchOf(attribute));
-    }
-
-    @Deprecated
-    public SpecificationBuilder<T> withFetch(final PluralAttribute<T, ?, ?> attribute) {
-        return and(SpecificationFactory.fetchOf(attribute));
     }
 
     public SpecificationBuilder<T> isEqualTo(final SingularAttribute<T, ?> attribute,
