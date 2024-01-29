@@ -5,6 +5,19 @@ import org.springframework.stereotype.Component;
 
 import java.lang.annotation.*;
 
+/**
+ * An alias of {@link Component @Component} indicating that the
+ * annotated class contains Specifications. Complements
+ * {@link org.springframework.stereotype.Controller @Controller},
+ * {@link org.springframework.stereotype.Service @Service}, and
+ * {@link org.springframework.stereotype.Repository @Repository}.
+ *
+ * @author Quinn Andrews
+ * @see Component
+ * @see org.springframework.stereotype.Controller
+ * @see org.springframework.stereotype.Service
+ * @see org.springframework.stereotype.Repository
+ */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
